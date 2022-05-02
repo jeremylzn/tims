@@ -1,0 +1,112 @@
+/*-----------------------------------------------------------------------*/
+/*                        VALIDATION STYLING                             */
+
+.form-item {
+    & .error-section,
+    & .success-section {
+        margin-top: 5px;
+        display: flex;
+        flex-direction: row;
+
+        & > * {
+            display: none;
+            padding: 0 3px;
+        }
+    }
+
+    & .error-section {
+        color: $redCG !important;
+    }
+
+    & .success-section {
+        color: $success !important;
+    }
+}
+
+.form-item.invalid {
+    color: $redCG;
+
+    & input[type="range"] {
+        box-shadow: unset;
+    }
+
+    & input[type="range"]::-webkit-slider-runnable-track {
+        background: $redCG;
+    }
+
+    & input[type="range"]::-moz-range-track {
+        background: $redCG;
+    }
+    & .input-label > span {
+        background-color: $danger;
+        color: $danger-color;
+    }
+
+    & input[type="submit"],
+    & input[type="button"],
+    & button {
+        background-color: $danger !important;
+        color: $danger-color !important;
+    }
+    & input,
+    & textarea,
+    & select {
+        border-color: $redCG !important;
+        border-width: 2px !important;
+    }
+
+    & .error-section > * {
+        display: block;
+    }
+}
+
+.form-group.underline .form-item.invalid,
+.form-item.underline.invalid {
+    & input,
+    & textarea,
+    & select {
+        border-color: $redCG !important;
+        border-width: 2px;
+    }
+}
+
+.form-item.success {
+    color: $success;
+
+    & input,
+    & textarea,
+    & select {
+        border-color: $success !important;
+        border-width: 2px !important;
+    }
+
+    & input[type="range"] {
+        box-shadow: unset;
+    }
+
+    & input[type="range"]::-webkit-slider-runnable-track {
+        background: $success;
+    }
+
+    & input[type="range"]::-moz-range-track {
+        background: $success;
+    }
+    & .input-label > span {
+        background-color: $success;
+        color: $success-color;
+    }
+
+    & input[type="submit"],
+    & input[type="button"],
+    & button {
+        background-color: $success !important;
+        color: $success-color !important;
+    }
+
+    & .success-section > * {
+        display: block;
+    }
+}
+
+/*                        VALIDATION STYLING                             */
+/*-----------------------------------------------------------------------*/

@@ -1,0 +1,159 @@
+@import "../variables/color";
+
+.nav.mobile-active {
+    & .mobile {
+        display: block;
+    }
+}
+
+.nav {
+    & .mobile::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+    & .mobile {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 350px;
+        max-width: 80vw;
+        height: auto;
+        max-height: 100vh;
+        overflow-y: auto;
+        border-bottom-right-radius: 5px;
+        box-shadow: 1px 1px 10px $blackCoffe;
+        background: inherit;
+        padding: 0 5px 0 5px;
+        word-wrap: break-word;
+        background-color: $light;
+        color: $light-color;
+        z-index: 99;
+
+        & .header {
+            width: 100%;
+            padding: 10px;
+            border-bottom: 1px solid $grayWeb;
+            display: block;
+            & .brand {
+                color: inherit;
+                text-decoration: none;
+                font-size: 30px;
+            }
+        }
+
+        & .footer {
+            background: inherit;
+            color: inherit;
+            border-top: 1px solid $grayWeb;
+            display: block;
+        }
+
+        & ul.mobile-list {
+            list-style-type: none;
+            margin: 30px 20px 30px 10px;
+            padding: 0;
+            & li {
+                display: block;
+                padding: 5px 0;
+                font-size: 18px;
+                & .nav-link {
+                    text-decoration: none;
+                    color: inherit;
+                    margin-right: 20px;
+                }
+            }
+            & li.dropdown {
+                position: relative;
+                max-width: 100%;
+                & ul {
+                    list-style-type: none;
+                    display: none;
+                    height: 0;
+                    padding: 0;
+                    & li {
+                        padding-left: 1%;
+                        & .nav-link {
+                            text-decoration: none;
+                            color: inherit;
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+            & li.dropdown.expanded {
+                position: relative;
+                & ul {
+                    display: block;
+                    margin-top: 20px;
+                    height: auto;
+                    opacity: 1;
+                }
+            }
+            & li.dropdown:hover {
+                cursor: pointer;
+            }
+
+            & li.dropdown::after {
+                content: "+";
+                position: absolute;
+                top: 0;
+                right: 13px;
+                width: 0;
+                height: 0;
+                font-size: 25px;
+                padding-right: 10px;
+            }
+
+            & li:hover::after {
+                color: $blueDodger;
+            }
+
+            & li.dropdown.expanded::after {
+                content: "-";
+            }
+        }
+    }
+}
+
+.nav.mobile-active.mobile-fullscreen {
+    & .mobile {
+        min-width: 100%;
+        max-width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        overflow-y: auto;
+
+        & ul.mobile-list {
+            padding-bottom: 60px;
+        }
+
+        & .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0 20px;
+        }
+    }
+
+    & .menu {
+        z-index: 200;
+        & .hamburger:before,
+        & .hamburger:after {
+            top: -3px;
+            background: $blackIntense !important;
+        }
+    }
+}
+
+.nav.dark.mobile-active.mobile-fullscreen {
+    & .menu {
+        z-index: 200;
+        & .hamburger:before,
+        & .hamburger:after {
+            background: $whitePlain !important;
+        }
+    }
+}

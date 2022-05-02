@@ -1,0 +1,190 @@
+.anime-fade {
+    animation-name: fade;
+}
+
+.anime-fromtop {
+    animation-name: fromTopTo1;
+}
+
+.anime-swing {
+    animation: swing 1.2s infinite alternate;
+}
+
+.anime-swing:hover {
+    animation: none;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fromTopTo1 {
+    from {
+        opacity: 0;
+        top: -100%;
+    }
+    to {
+        opacity: 1;
+        top: 1%;
+    }
+}
+
+@keyframes fromBottomTo5 {
+    from {
+        opacity: 0;
+        bottom: -100%;
+    }
+    to {
+        opacity: 1;
+        bottom: 5%;
+    }
+}
+
+@keyframes fromLeftTo5 {
+    from {
+        opacity: 0;
+        left: -100%;
+    }
+    to {
+        opacity: 1;
+        left: 5%;
+    }
+}
+
+@keyframes fromRightTo5 {
+    from {
+        opacity: 0;
+        right: -100%;
+    }
+    to {
+        opacity: 1;
+        right: 5%;
+    }
+}
+
+@keyframes fromLeftTopTo5 {
+    from {
+        opacity: 0;
+        top: -100%;
+        left: -50%;
+    }
+    to {
+        opacity: 1;
+        top: 5%;
+        left: 5%;
+    }
+}
+
+@keyframes swing {
+    0% {
+        left: 1%;
+    }
+    50% {
+        left: 9%;
+    }
+    100% {
+        left: 5%;
+    }
+}
+
+@keyframes scaled {
+    0% {
+        transform: scale(1, 0);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes spinnerTop {
+    0% {
+        transform: rotate(0deg);
+        border-width: 10px;
+    }
+    50% {
+        transform: rotate(180deg);
+        border-width: 1px;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-width: 10px;
+    }
+}
+
+@keyframes spinnerBottom {
+    0% {
+        transform: rotate(0deg);
+        border-width: 1px;
+    }
+    50% {
+        transform: rotate(180deg);
+        border-width: 10px;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-width: 1px;
+    }
+}
+
+@keyframes bouncer {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100px);
+    }
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateX(0) rotateY(0);
+    }
+    25% {
+        transform: rotateX(0) rotateY(180deg);
+    }
+    50% {
+        transform: rotateX(180deg) rotateY(180deg);
+    }
+    75% {
+        transform: rotateX(180deg) rotateY(0);
+    }
+    100% {
+        transform: rotateX(0) rotateY(0);
+    }
+}
+
+@keyframes modal {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes modalToMiddle {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes navMobileDelayed {
+    from {
+        width: -100px;
+    }
+    to {
+        width: auto;
+    }
+}

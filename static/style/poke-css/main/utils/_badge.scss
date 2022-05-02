@@ -1,0 +1,101 @@
+@import "variables/color";
+
+.badge {
+    display: inline-block;
+    width: max-content;
+    height: max-content;
+    margin: 2px;
+    color: $primary-color;
+    background: $primary;
+    font-weight: bold;
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    border-radius: 3px;
+    word-break: keep-all;
+    white-space: nowrap;
+    box-sizing: border-box;
+    & * {
+        box-sizing: border-box;
+    }
+}
+
+.badge.sm,
+.badge.md,
+.badge.lg,
+.badge.xl {
+    font-size: 12px;
+    padding: 1px 3px;
+    border-radius: 3px;
+}
+
+.badge.md {
+    font-size: 14px;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.badge.lg {
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 5px;
+}
+
+.badge.xl {
+    font-size: 18px;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.badge.dark {
+    background: $dark;
+    color: $dark-color !important;
+}
+
+.badge.gradient.dark {
+    background: linear-gradient(143deg, rgba(145, 150, 150, 1) 2%, rgba(33, 37, 41, 1) 100%) !important;
+}
+
+.badge.danger {
+    background: $danger;
+    color: $danger-color !important;
+}
+
+.badge.gradient.danger {
+    background: linear-gradient(143deg, rgba(254, 135, 130, 1) 2%, rgba(221, 64, 58, 1) 100%) !important;
+}
+
+.badge.success {
+    background: $success;
+    color: $success-color !important;
+}
+
+.badge.gradient.success {
+    background: linear-gradient(143deg, rgba(102, 240, 133, 1) 2%, rgba(40, 167, 69, 1) 100%) !important;
+}
+
+.badge.warning {
+    background: $warning;
+    color: $warning-color !important;
+}
+
+.badge.gradient.warning {
+    background: linear-gradient(143deg, rgba(226, 219, 198, 1) 0%, rgba(255, 193, 7, 1) 100%) !important;
+}
+
+.badge.primary {
+    background: $primary;
+    color: $primary-color !important;
+}
+
+.badge.gradient.primary {
+    background: linear-gradient(143deg, rgba(119, 172, 250, 1) 2%, rgba(13, 110, 253, 1) 100%) !important;
+}
+
+.badge.info {
+    background: $info;
+    color: $info-color !important;
+}
+
+.badge.gradient.info {
+    background: linear-gradient(143deg, rgba(144, 244, 249, 1) 2%, rgba(0, 166, 228, 1) 100%) !important;
+}

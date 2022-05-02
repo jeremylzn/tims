@@ -1,0 +1,235 @@
+@import "variables/color";
+
+// text sizes
+$xxs: 12px;
+$xs: 14px;
+$sm: 16px;
+$md: 20px;
+$lg: 27px;
+$xl: 32px;
+$xxl: 45px;
+$xxxl: 60px;
+$xxxxl: 80px;
+
+// function used to calculate responsive text size based on parent width resize
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
+
+    @if $u1==$u2 and $u1==$u3 and $u1==$u4 {
+        & {
+            font-size: $min-font-size;
+
+            @media (min-width: $min-vw) {
+                font-size: calc(
+                    #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+                        ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+                ) !important;
+            }
+
+            @media (min-width: $max-vw) {
+                font-size: $max-font-size;
+            }
+        }
+    }
+}
+
+// TEXT
+.word-wrap {
+    word-wrap: break-word;
+    white-space: wrap;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text.underline,
+.text > .underline {
+    text-decoration: underline !important;
+}
+
+.text.capitalize,
+.text > .capitalize {
+    text-transform: capitalize !important;
+}
+
+.text.lowercase,
+.text > .lowercase {
+    text-transform: lowercase !important;
+}
+
+.text.uppercase,
+.text > .uppercase {
+    text-transform: uppercase !important;
+}
+
+.text.right {
+    text-align: right !important;
+}
+
+.text.left,
+.text-left {
+    text-align: left !important;
+}
+
+.text.center,
+.text-center {
+    text-align: center !important;
+}
+
+.text.justify,
+.text-justify {
+    text-align: justify !important;
+}
+
+.text.lighter,
+.text > .lighter {
+    font-weight: lighter !important;
+}
+
+.text.bold,
+.text > .bold {
+    font-weight: bold !important;
+}
+
+.text.italic,
+.text > .italic {
+    font-style: italic !important;
+}
+
+// text static
+.text.xxs,
+.text > .xxs {
+    font-size: $xxs;
+}
+
+.text.xs,
+.text > .xs {
+    font-size: $xs;
+}
+
+.text.sm,
+.text > .sm {
+    font-size: $sm;
+}
+
+.text.md,
+.text > .md {
+    font-size: $md;
+}
+
+.text.lg,
+.text > .lg {
+    font-size: $lg;
+}
+
+.text.xl,
+.text > .xl {
+    font-size: $xl;
+}
+
+.text.xxl,
+.text > .xxl {
+    font-size: $xxl;
+}
+
+.text.xxxl,
+.text > .xxxl {
+    font-size: $xxxl;
+}
+
+// text color
+.text.dark,
+.text > .dark {
+    color: $dark !important;
+}
+
+.text.light,
+.text > .light {
+    color: $light !important;
+}
+
+.text.success,
+.text > .success {
+    color: $success !important;
+}
+
+.text.info,
+.text > .info {
+    color: $info !important;
+}
+
+.text.primary,
+.text > .primary {
+    color: $primary !important;
+}
+
+.text.warning,
+.text > .warning {
+    color: $warning !important;
+}
+
+.text.danger,
+.text > .danger {
+    color: $danger !important;
+}
+
+.text.secondary,
+.text > .secondary {
+    color: $secondary !important;
+}
+
+.text.responsive.xl,
+.text > .responsive.xl {
+    @include fluid-type(320px, 1200px, $sm, $xl);
+}
+
+.text.responsive.xxl,
+.text > .responsive.xxl {
+    @include fluid-type(320px, 1200px, 18px, $xxl);
+}
+
+.text.responsive.xxxl,
+.text > .responsive.xxxl {
+    @include fluid-type(320px, 1200px, $md, $xxxl);
+}
+
+.text.responsive.xxxxl,
+.text > .responsive.xxxxl {
+    @include fluid-type(320px, 1200px, 22px, $xxxxl);
+}

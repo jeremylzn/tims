@@ -1,0 +1,57 @@
+.form-item {
+    & .input-label {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    & .input-label.before {
+        & input,
+        & select {
+            border-bottom-left-radius: 0px !important;
+            border-top-left-radius: 0px !important;
+        }
+    }
+    & .input-label.after {
+        & input,
+        & select {
+            border-bottom-right-radius: 0px !important;
+            border-top-right-radius: 0px !important;
+        }
+    }
+    & .input-label > span {
+        background-color: $secondary;
+        color: $secondary-color;
+        display: flex;
+        align-items: center;
+    }
+    & .input-label.primary > span {
+        background-color: $primary;
+        color: $primary-color;
+    }
+    & .input-label.info > span {
+        background-color: $info;
+        color: $info-color;
+    }
+    & .input-label.danger > span {
+        background-color: $danger;
+        color: $danger-color;
+    }
+    & .input-label.success > span {
+        background-color: $success;
+        color: $success-color;
+    }
+    & .input-label.warning > span {
+        background-color: $warning;
+        color: $warning-color;
+    }
+    & .input-label.dark > span {
+        background-color: $dark;
+        color: $dark-color;
+    }
+    & .input-label.light > span {
+        border: 1px solid #a5adb6;
+        background-color: $light;
+        color: $light-color;
+    }
+}

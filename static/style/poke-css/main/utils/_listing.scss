@@ -1,0 +1,28 @@
+@import "../utils/variables/color";
+
+.listing {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    box-sizing: border-box;
+    & .item {
+        display: block;
+        padding: 2% 1%;
+        border: 1px solid $grayWeb;
+        border-radius: 3px;
+        & img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    & .item:hover {
+        cursor: pointer;
+        background-color: $whitePlatinum;
+    }
+
+    & .item.active {
+        background-color: $primary;
+        color: $primary-color;
+    }
+}

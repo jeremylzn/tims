@@ -1,0 +1,40 @@
+@import "variables/color";
+.bg-dark {
+    background: $dark;
+    color: $dark-color;
+}
+
+.bg-light {
+    background: $light;
+    color: $light-color;
+}
+
+.bg-primary {
+    background: $primary;
+    color: $primary-color;
+}
+
+.bg-success {
+    background: $success;
+    color: $success-color;
+}
+
+.bg-warning {
+    background: $warning;
+    color: $warning-color;
+}
+
+.bg-info {
+    background: $info;
+    color: $info-color;
+}
+
+.bg-danger {
+    background: $danger;
+    color: $danger-color;
+}
+
+.bg-secondary {
+    background: $secondary;
+    color: $secondary-color;
+}

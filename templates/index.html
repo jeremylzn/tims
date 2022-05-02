@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- STYLE -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/poke-css/main/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/main/main.css') }}">
+
+    <!-- ICON -->
+    <link rel="icon" href="{{ url_for('static', filename='img/tims-alone.png') }}">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="../static/img/tims-alone.png" alt="logo" class="rounded-sm shadow-lg">
+        </div>
+
+        <ul>
+            <li>Home</li>
+            <li>Deregister</li>
+            <li>About</li>
+        </ul>
+
+
+        <div class="logo">
+            <img src="../static/img/tims-alone.png" alt="logo" class="rounded-sm shadow-lg">
+        </div>
+    </nav>
+
+
+
+    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3 show" id="register-container">
+
+        <span class="badge xl absolute-badge">1. Register your Telegram App</span>
+
+        <form id="register-form" class="form-group form-rounded form-row lg">
+
+            <div class="form-item">
+                <label>ID</label>
+                <input type="text" name="id" id="" value="id">
+
+                <span class="form-hint">
+                    Your Telegram ID
+                </span>
+            </div>
+
+            <div class="form-item">
+                <label>Hash</label>
+                <input type="text" name="hash" value="hash">
+
+                <span class="form-hint">
+                    Your Telegram Hash Key
+                </span>
+            </div>
+
+            <div class="form-item">
+                <label>Phone</label>
+                <input type="text" name="phone" value="phone">
+
+                <span class="form-hint">
+                    An updated phone number to your Telegram account
+                </span>
+            </div>
+
+            <div class="form-item">
+                <button class="btn lg outline" type="submit">Register my app</button>
+            </div>
+
+        </form>
+
+        <div class="loader-spinner" id="register-loader">
+            <div></div>
+            <div></div>
+        </div>
+
+    </div>
+
+
+
+    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="messaging-container">
+
+        <span class="badge xl absolute-badge">2. Start sending messages</span>
+
+        <form id="message-form" class="form-group form-rounded lg">
+
+            <div class="form-item">
+                <label>Interval <strong id="interval-data"></strong></label>
+                <input type="range" id="interval" name="interval" min="1" max="60" step="1" value="1" />
+
+                <span class="form-hint">
+                    Messaging interval from 1 to 60 minutes
+                </span>
+            </div>
+
+            <div class="form-item">
+                <label>Channels</label>
+                <textarea rows="10" name="channels" placeholder="channel1--channel">channel1--channel</textarea>
+
+                <span class="form-hint">
+                    Your divided by --, do not start or end with '--'
+                </span>
+            </div>
+
+            <div class="form-item">
+                <label>Message</label>
+                <textarea rows="10" name="message" placeholder="Hello there from TIMS">Hello there from TIMS</textarea>
+
+                <span class="form-hint">
+                    Your text message
+                </span>
+            </div>
+
+            <div class="form-item">
+                <button class="btn lg outline" type="submit">Send my message</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+</body>
+
+</html>

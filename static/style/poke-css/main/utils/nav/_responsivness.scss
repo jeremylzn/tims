@@ -1,0 +1,76 @@
+@import "../variables/breakpoints";
+
+.nav.sm {
+    @media (min-width: $breakpoint-sm) {
+        & .mobile,
+        & .menu {
+            display: none;
+        }
+    }
+    @media (max-width: $breakpoint-sm) {
+        justify-content: space-between !important;
+        & ul.nav-list {
+            display: none;
+        }
+    }
+}
+
+.nav.md {
+    @media (min-width: $breakpoint-md) {
+        & .mobile,
+        & .menu {
+            display: none;
+        }
+    }
+    @media (max-width: $breakpoint-md) {
+        justify-content: space-between !important;
+        & ul.nav-list {
+            display: none;
+        }
+    }
+}
+
+.nav.lg {
+    @media (min-width: $breakpoint-lg) {
+        & .mobile,
+        & .menu {
+            display: none;
+        }
+    }
+    @media (max-width: $breakpoint-lg) {
+        justify-content: space-between !important;
+        & ul.nav-list {
+            display: none;
+        }
+    }
+}
+
+.nav.xl {
+    @media (min-width: $breakpoint-xl) {
+        & .mobile,
+        & .menu {
+            display: none;
+        }
+    }
+    @media (max-width: $breakpoint-xl) {
+        justify-content: space-between !important;
+        & ul.nav-list {
+            display: none;
+        }
+    }
+}
+
+.nav.xxl {
+    @media (min-width: $breakpoint-xxl) {
+        & .mobile,
+        & .menu {
+            display: none;
+        }
+    }
+    @media (max-width: $breakpoint-xxl) {
+        justify-content: space-between !important;
+        & ul.nav-list {
+            display: none;
+        }
+    }
+}

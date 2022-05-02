@@ -1,0 +1,14 @@
+@import 'variables/color';
+
+
+.border-dark {
+    border: 1px solid $grayCool;
+}
+
+.border-light {
+    border: 1px solid $silverSand;
+}
+
+.border-underline-dark {
+    border-bottom: 1px solid $blackCoffe;
+}

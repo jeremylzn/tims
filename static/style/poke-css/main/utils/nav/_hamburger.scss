@@ -1,0 +1,62 @@
+.nav.mobile-active {
+    & .menu {
+        & .hamburger {
+            background: rgba($color: #fff, $alpha: 0) !important;
+        }
+        & .hamburger:before,
+        & .hamburger:after {
+            top: 0;
+            width: 100%;
+        }
+        & .hamburger:before {
+            transform: rotate(45deg);
+        }
+        & .hamburger:after {
+            transform: rotate(135deg);
+        }
+    }
+}
+
+.nav {
+    & .menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 30px;
+        height: auto;
+        padding: 20px 0;
+        & .hamburger {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 1.5px !important;
+            background: $blackIntense;
+            transform: translate(-50%, -50%);
+            transition: 0.1s;
+        }
+        & .hamburger:before,
+        & .hamburger:after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 1.5px;
+            background: $blackIntense;
+            transition: 0.5s;
+            width: 50%;
+        }
+        & .hamburger:before {
+            top: -8px;
+            left: 0;
+        }
+        & .hamburger:after {
+            top: 8px;
+            right: 0;
+        }
+    }
+    & .menu:hover {
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,94 @@
+$zero: 0px;
+$sm: 5px;
+$md: 10px;
+$lg: 15px;
+$xl: 20px;
+$circle: 50%;
+
+.rounded-sm {
+    border-radius: $sm;
+}
+
+.rounded-md {
+    border-radius: $md;
+}
+
+.rounded-lg {
+    border-radius: $lg;
+}
+
+.rounded-xl {
+    border-radius: $xl;
+}
+
+.rounded-circle {
+    border-radius: $circle;
+}
+
+// round leaving one square sm size
+.rounded-sm-rb {
+    border-radius: $sm $sm $zero $sm;
+}
+
+.rounded-sm-lb {
+    border-radius: $sm $sm $sm $zero;
+}
+
+.rounded-sm-rt {
+    border-radius: $sm $zero $sm $sm;
+}
+
+.rounded-sm-lt {
+    border-radius: $zero $sm $sm $sm;
+}
+
+// round leaving one square md size
+.rounded-md-rb {
+    border-radius: $md $md $zero $md;
+}
+
+.rounded-md-lb {
+    border-radius: $md $md $md $zero;
+}
+
+.rounded-md-rt {
+    border-radius: $md $zero $md $md;
+}
+
+.rounded-md-lt {
+    border-radius: $zero $md $md $md;
+}
+
+// round leaving one square lg size
+.rounded-lg-rb {
+    border-radius: $lg $lg $zero $lg;
+}
+
+.rounded-lg-lb {
+    border-radius: $lg $lg $lg $zero;
+}
+
+.rounded-lg-rt {
+    border-radius: $lg $zero $lg $lg;
+}
+
+.rounded-lg-lt {
+    border-radius: $zero $lg $lg $lg;
+}
+
+// round leaving one square xl size
+.rounded-xl-rb {
+    border-radius: $xl $xl $zero $xl;
+}
+
+.rounded-xl-lb {
+    border-radius: $xl $xl $xl $zero;
+}
+
+.rounded-xl-rt {
+    border-radius: $xl $zero $xl $xl;
+}
+
+.rounded-xl-lt {
+    border-radius: $zero $xl $xl $xl;
+}

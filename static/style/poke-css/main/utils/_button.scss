@@ -1,0 +1,213 @@
+@import "variables/_color.scss";
+
+.btn.sm.wide,
+.btn.md.wide,
+.btn.lg.wide,
+.btn.xl.wide,
+.btn.wide {
+    width: 99% !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    margin: 1px;
+    display: inline-block;
+    width: fit-content;
+    border: none !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important; // prevent word wrap in a href links
+    box-sizing: border-box;
+    & * {
+        box-sizing: border-box;
+    }
+}
+
+.btn.sm,
+.btn.sm.wide {
+    padding: 7px 9px !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+}
+
+.btn,
+.btn.wide,
+.btn.md,
+.btn.md.wide {
+    padding: 7px 8px !important;
+    font-size: 17px !important;
+    border-radius: 5px !important;
+}
+
+.btn.lg,
+.btn.lg.wide {
+    padding: 10px 11px !important;
+    font-size: 20px !important;
+    border-radius: 7px !important;
+}
+
+.btn.xl,
+.btn.xl.wide {
+    padding: 14px 17px !important;
+    font-size: 25px !important;
+    border-radius: 9px !important;
+}
+
+.btn:hover {
+    cursor: pointer !important;
+}
+
+.btn:focus {
+    outline-width: 0 !important;
+}
+
+.btn.dark {
+    background: $dark !important;
+    color: $dark-color !important;
+}
+
+.btn.light {
+    background: $light !important;
+    color: $light-color !important;
+}
+
+.btn,
+.btn.primary {
+    background: $primary !important;
+    color: $primary-color !important;
+}
+
+.btn.success {
+    background: $success !important;
+    color: $success-color !important;
+}
+
+.btn.warning {
+    background: $warning !important;
+    color: $warning-color !important;
+}
+
+.btn.info {
+    background: $info !important;
+    color: $info-color !important;
+}
+
+.btn.danger {
+    background: $danger !important;
+    color: $danger-color !important;
+}
+
+.btn.secondary {
+    background: $secondary !important;
+    color: $secondary-color !important;
+}
+
+.btn:hover,
+.btn.dark:hover,
+.btn.primary:hover,
+.btn.success:hover,
+.btn.info:hover,
+.btn.warning:hover,
+.btn.danger:hover,
+.btn.ssecondary:hover {
+    opacity: 0.9 !important;
+}
+
+.btn.light:hover {
+    background: rgba($color: #000000, $alpha: 0.5) !important;
+    color: $light !important;
+}
+
+.btn.outline {
+    color: $primary !important;
+    box-shadow: inset 0px 0px 0px 1px $primary !important;
+    background: inherit !important;
+}
+
+.btn.outline:hover {
+    color: $primary-color !important;
+    background-color: $primary !important;
+}
+
+.btn.dark.outline {
+    color: $dark !important;
+    box-shadow: inset 0px 0px 0px 1px $dark !important;
+}
+
+.btn.dark.outline:hover {
+    background: $dark !important;
+    color: $dark-color !important;
+}
+
+.btn.light.outline {
+    color: $light !important;
+    box-shadow: inset 0px 0px 0px 1px $light !important;
+}
+
+.btn.light.outline:hover {
+    background: $light !important;
+    color: $light-color !important;
+}
+
+.btn.primary.outline {
+    color: $primary !important;
+    box-shadow: inset 0px 0px 0px 1px $primary !important;
+}
+
+.btn.primary.outline:hover {
+    background: $primary !important;
+    color: $primary-color !important;
+}
+
+.btn.success.outline {
+    color: $success !important;
+    box-shadow: inset 0px 0px 0px 1px $success !important;
+}
+
+.btn.success.outline:hover {
+    background: $success !important;
+    color: $success-color !important;
+}
+
+.btn.warning.outline {
+    color: $warning !important;
+    box-shadow: inset 0px 0px 0px 1px $warning !important;
+}
+
+.btn.warning.outline:hover {
+    background: $warning !important;
+    color: $warning-color !important;
+}
+
+.btn.info.outline {
+    color: $info !important;
+    box-shadow: inset 0px 0px 0px 1px $info !important;
+}
+
+.btn.info.outline:hover {
+    background: $info !important;
+    color: $info-color !important;
+}
+
+.btn.danger.outline {
+    color: $danger !important;
+    box-shadow: inset 0px 0px 0px 1px $danger !important;
+}
+
+.btn.danger.outline:hover {
+    background: $danger !important;
+    color: $danger-color !important;
+}
+
+.btn.secondary.outline {
+    color: $secondary !important;
+    box-shadow: inset 0px 0px 0px 1px $secondary !important;
+}
+
+.btn.secondary.outline:hover {
+    background: $secondary !important;
+    color: $secondary-color !important;
+}

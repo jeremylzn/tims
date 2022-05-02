@@ -1,0 +1,50 @@
+{
+  "_from": "poke-css",
+  "_id": "poke-css@1.2.1",
+  "_inBundle": false,
+  "_integrity": "sha512-r2wz6aSe+goQVCiVHfvGGpD4AkMcg1EaonPOTN2K9Go7h/egxpT5xiA9gmI8+6lsrQxXoIsnRqNzMQxeO5L/8A==",
+  "_location": "/poke-css",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "poke-css",
+    "name": "poke-css",
+    "escapedName": "poke-css",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/poke-css/-/poke-css-1.2.1.tgz",
+  "_shasum": "13293cf5475bcad93bad2be18a5d2eb19a3d5d3b",
+  "_spec": "poke-css",
+  "_where": "D:\\My Projects\\Web Development\\Personal\\tims",
+  "author": {
+    "name": "Cosmin Neaga"
+  },
+  "bugs": {
+    "url": "https://github.com/cosminneaga/poke-css/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "POKE-CSS a CSS framework used to ease the website and web application build",
+  "homepage": "https://poke-css.web.app/",
+  "keywords": [
+    "poke-css"
+  ],
+  "license": "MIT",
+  "main": "main",
+  "name": "poke-css",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cosminneaga/poke-css.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.2.1"
+}

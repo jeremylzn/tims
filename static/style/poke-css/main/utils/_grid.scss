@@ -1,0 +1,691 @@
+@import "variables/breakpoints";
+@import "variables/color";
+
+.container,
+.column,
+.row,
+.col {
+    box-sizing: border-box;
+    & * {
+        box-sizing: border-box;
+    }
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.row > * {
+    flex-shrink: 0;
+    max-width: 100%;
+}
+
+.row.primary > *,
+.column.primary > * {
+    background-color: $primary !important;
+    color: $primary-color !important;
+}
+
+.row.info > *,
+.column.info > * {
+    background-color: $info !important;
+    color: $info-color !important;
+}
+
+.row.dark > *,
+.column.dark > * {
+    background-color: $dark !important;
+    color: $dark-color !important;
+}
+
+.row.light > *,
+.column.light > * {
+    background-color: $light !important;
+    color: $light-color !important;
+}
+
+.row.success > *,
+.column.success > * {
+    background-color: $success !important;
+    color: $success-color !important;
+}
+
+.row.danger > *,
+.column.danger > * {
+    background-color: $danger !important;
+    color: $danger-color !important;
+}
+
+.row.warning > *,
+.column.warning > * {
+    background-color: $warning !important;
+    color: $warning-color !important;
+}
+
+// CONTAINER
+/*
+container defines a square, or better a rectangle in
+the web layout in which the user is able to place
+different items, by adding classes fluid, sm, md, lg, xl
+to the container element will tell to no exceed a max
+width in the browser's window 
+*/
+.container {
+    word-wrap: break-word;
+    display: block;
+    height: auto;
+    padding: 0 1%;
+    & .container {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.container.dark {
+    background-color: $dark !important;
+    color: $dark-color !important;
+}
+
+.container.light {
+    background: $light !important;
+    color: $light-color !important;
+}
+
+.container.primary {
+    background: $primary !important;
+    color: $primary-color !important;
+}
+
+.container.success {
+    background: $success !important;
+    color: $success-color !important;
+}
+
+.container.warning {
+    background: $warning !important;
+    color: $warning-color !important;
+}
+
+.container.info {
+    background: $info !important;
+    color: $info-color !important;
+}
+
+.container.danger {
+    background: $danger !important;
+    color: $danger-color !important;
+}
+
+.container.secondary {
+    background: $secondary !important;
+    color: $secondary-color !important;
+}
+
+.container::-webkit-scrollbar {
+    width: 0;
+}
+
+.container.regular {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+$reg_width_sm: 500px;
+$reg_width_md: 700px;
+$reg_width_lg: 900px;
+$reg_width_xl: 1000px;
+
+@media (min-width: $breakpoint-sm) {
+    .container.regular {
+        max-width: $reg_width_sm;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .container.regular {
+        max-width: $reg_width_md;
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+    .container.regular {
+        max-width: $reg_width_lg;
+    }
+}
+
+@media (min-width: $breakpoint-xl) {
+    .container.regular {
+        max-width: $reg_width_xl;
+    }
+}
+
+.container.fluid,
+.container.sm,
+.container.md,
+.container.lg,
+.container.xl,
+.container.xxl {
+    position: relative;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    word-break: keep-all;
+}
+
+@media (min-width: $breakpoint-sm) {
+    .container.sm {
+        max-width: $breakpoint-sm;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .container.md {
+        max-width: $breakpoint-md;
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+    .container.lg {
+        max-width: $breakpoint-lg;
+    }
+}
+
+@media (min-width: $breakpoint-xl) {
+    .container.xl {
+        max-width: $breakpoint-xl;
+    }
+}
+
+@media (min-width: $breakpoint-xxl) {
+    .container.xxl {
+        max-width: $breakpoint-xxl;
+    }
+}
+
+// COLUMNS
+/*
+grid columns is the basic of grid layout in css
+the number added in roman language to each on them
+will define its maximum width in web page, also
+by adding sm, md, lg, xl will make these columns
+sit below each other when the browser window is
+resized
+*/
+
+// columns widths variables
+$col-1: 16.66666666666667%;
+$col-2: 33.33333333333333%;
+$col-3: 50%;
+$col-4: 66.66666666666667%;
+$col-5: 83.33333333333333%;
+$col-6: 100%;
+
+.col {
+    position: relative;
+    width: 100%;
+    padding: 0 0.5%;
+    word-break: keep-all;
+}
+
+.col.sticky {
+    position: sticky;
+    top: 0;
+}
+
+.col.dark {
+    background-color: $dark !important;
+    color: $dark-color !important;
+}
+
+.col.light {
+    background: $light !important;
+    color: $light-color !important;
+}
+
+.col.primary {
+    background: $primary !important;
+    color: $primary-color !important;
+}
+
+.col.success {
+    background: $success !important;
+    color: $success-color !important;
+}
+
+.col.warning {
+    background: $warning !important;
+    color: $warning-color !important;
+}
+
+.col.info {
+    background: $info !important;
+    color: $info-color !important;
+}
+
+.col.danger {
+    background: $danger !important;
+    color: $danger-color !important;
+}
+
+.col.auto {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+// .col.auto {
+//     flex: 0 0 auto;
+//     width: auto;
+//     max-width: 100%;
+// }
+
+.col.I {
+    flex: 0 0 $col-1;
+    max-width: $col-1;
+}
+
+.col.II {
+    flex: 0 0 $col-2;
+    max-width: $col-2;
+}
+
+.col.III {
+    flex: 0 0 $col-3;
+    max-width: $col-3;
+}
+
+.col.IV {
+    flex: 0 0 $col-4;
+    max-width: $col-4;
+}
+
+.col.V {
+    flex: 0 0 $col-5;
+    max-width: $col-5;
+}
+
+.col.VI {
+    flex: 0 0 $col-6;
+    max-width: $col-6;
+}
+
+@media (min-width: $breakpoint-sm) {
+    .col.sm {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+
+    .col.sm-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
+    }
+
+    .col.sm-I {
+        flex: 0 0 $col-1;
+        max-width: $col-1;
+    }
+
+    .col.sm-II {
+        flex: 0 0 $col-2;
+        max-width: $col-2;
+    }
+
+    .col.sm-III {
+        flex: 0 0 $col-3;
+        max-width: $col-3;
+    }
+
+    .col.sm-IV {
+        flex: 0 0 $col-4;
+        max-width: $col-4;
+    }
+
+    .col.sm-V {
+        flex: 0 0 $col-5;
+        max-width: $col-5;
+    }
+
+    .col.sm-VI {
+        flex: 0 0 $col-6;
+        max-width: $col-6;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .col.md {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+
+    .col.md-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
+    }
+
+    .col.md-I {
+        flex: 0 0 $col-1;
+        max-width: $col-1;
+    }
+
+    .col.md-II {
+        flex: 0 0 $col-2;
+        max-width: $col-2;
+    }
+
+    .col.md-III {
+        flex: 0 0 $col-3;
+        max-width: $col-3;
+    }
+
+    .col.md-IV {
+        flex: 0 0 $col-4;
+        max-width: $col-4;
+    }
+
+    .col.md-V {
+        flex: 0 0 $col-5;
+        max-width: $col-5;
+    }
+
+    .col.md-VI {
+        flex: 0 0 $col-6;
+        max-width: $col-6;
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+    .col.lg {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+
+    .col.lg-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
+    }
+
+    .col.lg-I {
+        flex: 0 0 $col-1;
+        max-width: $col-1;
+    }
+
+    .col.lg-II {
+        flex: 0 0 $col-2;
+        max-width: $col-2;
+    }
+
+    .col.lg-III {
+        flex: 0 0 $col-3;
+        max-width: $col-3;
+    }
+
+    .col.lg-IV {
+        flex: 0 0 $col-4;
+        max-width: $col-4;
+    }
+
+    .col.lg-V {
+        flex: 0 0 $col-5;
+        max-width: $col-5;
+    }
+
+    .col.lg-VI {
+        flex: 0 0 $col-6;
+        max-width: $col-6;
+    }
+}
+
+@media (min-width: $breakpoint-xl) {
+    .col.xl {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+
+    .col.xl-auto {
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
+    }
+
+    .col.xl-I {
+        flex: 0 0 $col-1;
+        max-width: $col-1;
+    }
+
+    .col.xl-II {
+        flex: 0 0 $col-2;
+        max-width: $col-2;
+    }
+
+    .col.xl-III {
+        flex: 0 0 $col-3;
+        max-width: $col-3;
+    }
+
+    .col.xl-IV {
+        flex: 0 0 $col-4;
+        max-width: $col-4;
+    }
+
+    .col.xl-V {
+        flex: 0 0 $col-5;
+        max-width: $col-5;
+    }
+
+    .col.xl-VI {
+        flex: 0 0 $col-6;
+        max-width: $col-6;
+    }
+}
+
+// ORDERING COLUMNS
+/*
+.order classes are used to order columns in a specific defined row
+or column, by adding sm, md, lg, xl will make this order on a specific
+client width, means that when the browser resizes this will order the elements
+accordingly
+*/
+.order-first {
+    order: -1;
+}
+
+.order-last {
+    order: 7;
+}
+
+.order-0 {
+    order: 0;
+}
+
+.order-1 {
+    order: 1;
+}
+
+.order-2 {
+    order: 2;
+}
+
+.order-3 {
+    order: 3;
+}
+
+.order-4 {
+    order: 4;
+}
+
+.order-5 {
+    order: 5;
+}
+
+.order-6 {
+    order: 6;
+}
+
+@media (max-width: $breakpoint-sm) {
+    .order-sm-first {
+        order: -1;
+    }
+
+    .order-sm-last {
+        order: 7;
+    }
+
+    .order-sm-0 {
+        order: 0;
+    }
+
+    .order-sm-1 {
+        order: 1;
+    }
+
+    .order-sm-2 {
+        order: 2;
+    }
+
+    .order-sm-3 {
+        order: 3;
+    }
+
+    .order-sm-4 {
+        order: 4;
+    }
+
+    .order-sm-5 {
+        order: 5;
+    }
+
+    .order-sm-6 {
+        order: 6;
+    }
+}
+
+@media (max-width: $breakpoint-md) {
+    .order-md-first {
+        order: -1;
+    }
+
+    .order-md-last {
+        order: 7;
+    }
+
+    .order-md-0 {
+        order: 0;
+    }
+
+    .order-md-1 {
+        order: 1;
+    }
+
+    .order-md-2 {
+        order: 2;
+    }
+
+    .order-md-3 {
+        order: 3;
+    }
+
+    .order-md-4 {
+        order: 4;
+    }
+
+    .order-md-5 {
+        order: 5;
+    }
+
+    .order-md-6 {
+        order: 6;
+    }
+}
+
+@media (max-width: $breakpoint-lg) {
+    .order-lg-first {
+        order: -1;
+    }
+
+    .order-lg-last {
+        order: 7;
+    }
+
+    .order-lg-0 {
+        order: 0;
+    }
+
+    .order-lg-1 {
+        order: 1;
+    }
+
+    .order-lg-2 {
+        order: 2;
+    }
+
+    .order-lg-3 {
+        order: 3;
+    }
+
+    .order-lg-4 {
+        order: 4;
+    }
+
+    .order-lg-5 {
+        order: 5;
+    }
+
+    .order-lg-6 {
+        order: 6;
+    }
+}
+
+@media (max-width: $breakpoint-xl) {
+    .order-xl-first {
+        order: -1;
+    }
+
+    .order-xl-last {
+        order: 7;
+    }
+
+    .order-xl-0 {
+        order: 0;
+    }
+
+    .order-xl-1 {
+        order: 1;
+    }
+
+    .order-xl-2 {
+        order: 2;
+    }
+
+    .order-xl-3 {
+        order: 3;
+    }
+
+    .order-xl-4 {
+        order: 4;
+    }
+
+    .order-xl-5 {
+        order: 5;
+    }
+
+    .order-xl-6 {
+        order: 6;
+    }
+}

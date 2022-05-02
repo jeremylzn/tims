@@ -1,0 +1,157 @@
+@import "variables/color";
+
+/* -------------------------------------------------------------------------- */
+/*                               MAIN VARIABLES                               */
+/* -------------------------------------------------------------------------- */
+
+$header_background_color: $grayCultured;
+$footer_background_color: $grayCultured;
+$header_color: $blackIntense;
+$footer_color: $blackIntense;
+$body_background_color: $light;
+$body_color: $light-color;
+$border: 1px solid rgba(0, 0, 0, 0.15);
+// $border: none;
+
+.card {
+    width: fit-content;
+    border: $border;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: content-box;
+    & * {
+        box-sizing: border-box;
+    }
+}
+
+.card.wide {
+    width: calc(100% - 20px) !important;
+}
+
+.card.half {
+    width: calc(50% - 20px) !important;
+}
+
+.card.auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               MAIN CARD STYLE                              */
+/* -------------------------------------------------------------------------- */
+
+.card,
+.card.wide,
+.card.half {
+    display: block;
+    position: relative;
+    min-width: 300px;
+    height: auto;
+    margin: 10px;
+    overflow: hidden;
+    word-break: break-word;
+
+    & img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    & .header,
+    & .body,
+    & .footer {
+        // width: 100%;
+        max-width: 100%;
+        left: 0;
+        right: 0;
+        height: auto;
+    }
+    & .header,
+    & .footer {
+        padding: 1px 3px;
+    }
+    & .header {
+        background-color: $header_background_color;
+        color: $header_color;
+        border-bottom: $border;
+    }
+    & .footer {
+        background-color: $footer_background_color;
+        color: $footer_color;
+        border-top: $border;
+    }
+    & .body {
+        padding: 15px 6px;
+        background-color: $body_background_color;
+        color: $body_color;
+    }
+    & .full-img,
+    & .header.img {
+        padding: 0;
+        margin: 0;
+    }
+    & .caption {
+        opacity: 0;
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($color: #000000, $alpha: 0.3);
+        color: $light;
+        transition: opacity 0.7s ease-in-out;
+        & .message {
+            padding: 6px;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    &:hover > .caption {
+        opacity: 1;
+        cursor: pointer;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              CARD GLASS STYLE                              */
+/* -------------------------------------------------------------------------- */
+
+.card.glass {
+    background-color: rgba($color: #000000, $alpha: 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    color: inherit;
+    & .header,
+    & .body,
+    & .footer {
+        background-color: transparent;
+        color: inherit;
+    }
+    & .header {
+        border-bottom: 1px solid white;
+    }
+    & .footer {
+        border-top: 1px solid white;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  CARD ROW                                  */
+/* -------------------------------------------------------------------------- */
+
+.card-row,
+.card-row.responsive {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.card-row.responsive > * {
+    flex: 1 0 0%;
+}

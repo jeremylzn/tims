@@ -1,0 +1,287 @@
+@import "../variables/_color.scss";
+
+// main layout
+@import "layout";
+// main input sizes
+@import "sizes";
+// main input-label
+@import "input-label";
+// main validation
+@import "validation";
+
+.form-item,
+.form-group .form-item {
+    width: 100% !important;
+    min-height: 50px;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    & input[type="button"],
+    & input[type="submit"],
+    & input[type="reset"] {
+        background-color: $primary;
+        color: $primary-color;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        width: 100%;
+        margin: auto;
+    }
+    & input[type="button"]:hover,
+    & input[type="submit"]:hover,
+    & input[type="reset"]:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+
+    & label {
+        margin: 5px 0;
+    }
+
+    & input,
+    & select,
+    & textarea {
+        width: 100%;
+        max-width: 100%;
+        outline: none;
+        margin: auto;
+    }
+
+    textarea::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    & input,
+    & select,
+    & textarea {
+        border: 1px solid $silverCadetBlue;
+    }
+
+    & textarea:focus,
+    & select:focus,
+    & input:focus {
+        box-shadow: 0 0 10px rgba(81, 203, 238, 1);
+        border: 1px solid rgba(81, 203, 238, 1);
+    }
+
+    textarea::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    & .check-box,
+    & .radio-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start !important;
+        margin: 10px 5px;
+
+        & label {
+            margin: 0 10px;
+        }
+
+        & input {
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            background: $light;
+            border-radius: 1px;
+            border: 1px solid $dark;
+            transition: all 0.3s linear;
+            padding: 0;
+            margin: 0;
+        }
+
+        & input:checked {
+            background-color: $primary;
+            border: 1px solid $light;
+        }
+
+        & input:focus {
+            outline: 0 none;
+            box-shadow: none;
+        }
+    }
+
+    & .radio-item {
+        & input {
+            border-radius: 50% !important;
+        }
+    }
+
+    /*  range   */
+    & input[type="range"] {
+        padding: 8px 4px;
+        -webkit-appearance: none;
+        background: transparent;
+        border-width: 0;
+    }
+
+    & input[type="range"]:focus {
+        outline: none;
+        box-shadow: none;
+        border: none;
+    }
+
+    & input[type="range"]::-ms-track {
+        width: 100%;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+
+    & input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: 2px solid white;
+        border-radius: 20%;
+        background: $primary;
+        cursor: pointer;
+    }
+
+    & input[type="range"]::-moz-range-thumb {
+        border: 2px solid white;
+        border-radius: 20%;
+        background: $primary;
+        cursor: pointer;
+    }
+
+    & input[type="range"]::-webkit-slider-runnable-track {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 1.3px;
+        background: $primary;
+    }
+
+    & input[type="range"]::-moz-range-track {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 1.3px;
+        background: $primary;
+    }
+
+    & input[type="range"]:focus::-webkit-slider-runnable-track {
+        background: $brownBeaver;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  UNDERLINE                                 */
+/* -------------------------------------------------------------------------- */
+
+.form-item.form-underline,
+.form-group.form-underline .form-item {
+    & input:not(input[type="range"]):not(input[type="checkbox"]):not(input[type="radio"]),
+    & textarea,
+    & select {
+        outline: none;
+        border: none;
+        border-bottom: 1px solid $silverCadetBlue;
+        background: none;
+    }
+
+    & textarea:focus,
+    & select:focus,
+    & input:focus {
+        border-bottom-color: rgba(81, 203, 238, 1);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   ROUNDED                                  */
+/* -------------------------------------------------------------------------- */
+
+// variables
+$sm: 2px;
+$md: 4px;
+$lg: 5px;
+$xl: 5px;
+
+/*-----------------------------------------------------------------------*/
+/*                                SM                                     */
+.form-item.form-rounded.sm,
+.form-group.form-rounded.sm .form-item,
+.form-group.form-rounded .form-item {
+    & .input-label.after > span {
+        border-top-right-radius: $sm;
+        border-bottom-right-radius: $sm;
+    }
+    & .input-label.before > span {
+        border-top-left-radius: $sm;
+        border-bottom-left-radius: $sm;
+    }
+
+    & input,
+    & textarea,
+    & select {
+        border-radius: $sm;
+    }
+}
+/*                                SM                                     */
+/*-----------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------*/
+/*                                MD                                     */
+.form-item.form-rounded.md,
+.form-group.form-rounded.md .form-item {
+    & .input-label.after > span {
+        border-top-right-radius: $md;
+        border-bottom-right-radius: $md;
+    }
+    & .input-label.before > span {
+        border-top-left-radius: $md;
+        border-bottom-left-radius: $md;
+    }
+
+    & input,
+    & textarea,
+    & select {
+        border-radius: $md;
+    }
+}
+/*                                MD                                     */
+/*-----------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------*/
+/*                                LG                                     */
+.form-item.form-rounded.lg,
+.form-group.form-rounded.lg .form-item {
+    & .input-label.after > span {
+        border-top-right-radius: $lg;
+        border-bottom-right-radius: $lg;
+    }
+    & .input-label.before > span {
+        border-top-left-radius: $lg;
+        border-bottom-left-radius: $lg;
+    }
+
+    & input,
+    & textarea,
+    & select {
+        border-radius: $lg;
+    }
+}
+/*                                LG                                     */
+/*-----------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------*/
+/*                                XL                                     */
+.form-item.form-rounded.xl,
+.form-group.form-rounded.xl .form-item {
+    & .input-label.after > span {
+        border-top-right-radius: $xl;
+        border-bottom-right-radius: $xl;
+    }
+    & .input-label.before > span {
+        border-top-left-radius: $xl;
+        border-bottom-left-radius: $xl;
+    }
+
+    & input,
+    & textarea,
+    & select {
+        border-radius: $xl;
+    }
+}

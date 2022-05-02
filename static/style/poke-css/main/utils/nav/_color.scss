@@ -1,0 +1,327 @@
+@import "../variables/color";
+
+.nav.primary,
+.nav.info,
+.nav.danger,
+.nav.secondary,
+.nav.success,
+.nav.dark,
+.nav.light {
+    & ul.nav-list {
+        & li:hover,
+        & .dropdown:hover {
+            color: $yellowGold;
+        }
+    }
+    & .mobile {
+        background-color: inherit;
+        color: inherit;
+        & ul.mobile-list {
+            & li:hover {
+                & .nav-link {
+                    color: $yellowGold;
+                }
+            }
+        }
+    }
+}
+
+.nav.warning {
+    & .mobile {
+        background-color: inherit;
+        color: inherit;
+    }
+}
+
+.nav.primary {
+    background-color: $primary;
+    color: $primary-color;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $primary-color;
+        }
+    }
+    & ul.nav-list {
+        & .dropdown:hover {
+            & ul {
+                background: rgba($color: $primary, $alpha: 0.8);
+                box-shadow: 1px 1px 2px $primary-color, -1px 0 2px $primary-color;
+                & li {
+                    & a {
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.nav.info {
+    background-color: $info;
+    color: $info-color;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $info-color;
+        }
+    }
+    & ul.nav-list {
+        & .dropdown:hover {
+            & ul {
+                background: rgba($color: $info, $alpha: 0.8);
+                box-shadow: 1px 1px 2px $info-color, -1px 0 2px $info-color;
+                & li {
+                    & a {
+                        color: $info-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.nav.danger {
+    background-color: $danger;
+    color: $danger-color;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $danger-color;
+        }
+    }
+    & ul.nav-list {
+        & .dropdown:hover {
+            & ul {
+                background: rgba($color: $danger, $alpha: 0.8);
+                box-shadow: 1px 1px 2px $danger-color, -1px 0 2px $danger-color;
+                & li {
+                    & a {
+                        color: $danger-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.nav.secondary {
+    background-color: $secondary;
+    color: $secondary-color;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $secondary-color;
+        }
+    }
+    & ul.nav-list {
+        & .dropdown:hover {
+            & ul {
+                background: rgba($color: $secondary, $alpha: 0.8);
+                box-shadow: 1px 1px 2px $secondary-color, -1px 0 2px $secondary-color;
+                & li {
+                    & a {
+                        color: $secondary-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.nav.success {
+    background-color: $success;
+    color: $success-color;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $success-color;
+        }
+    }
+    & ul.nav-list {
+        & .dropdown:hover {
+            & ul {
+                background: rgba($color: $success, $alpha: 0.8);
+                box-shadow: 1px 1px 2px $success-color, -1px 0 2px $success-color;
+                & li {
+                    & a {
+                        color: $success-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.nav.dark {
+    background-color: $dark;
+    color: $dark-color;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $dark-color;
+        }
+    }
+    & ul.nav-list {
+        & .dropdown:hover {
+            & ul {
+                background: rgba($color: $dark, $alpha: 0.8);
+                box-shadow: 1px 1px 2px $dark-color, -1px 0 2px $dark-color;
+                & li {
+                    & a {
+                        color: $dark-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.nav.light {
+    background-color: $light;
+    color: $light-color;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $light-color;
+        }
+    }
+    & ul.nav-list {
+        & .dropdown:hover {
+            & ul {
+                background: rgba($color: $light, $alpha: 0.8);
+                box-shadow: 1px 1px 2px $light-color, -1px 0 2px $light-color;
+                & li {
+                    & a {
+                        color: $light-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.nav.warning {
+    background-color: $warning;
+    color: $warning-color;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $warning-color;
+        }
+    }
+    & ul.nav-list {
+        // added
+        & li:hover {
+            color: $blackCoral;
+        }
+        // added
+        & .dropdown::after {
+            border-bottom: solid $blackCoral;
+        }
+        & .dropdown:hover {
+            & ul {
+                background: rgba($color: $warning, $alpha: 0.8);
+                box-shadow: 1px 1px 2px $warning-color, -1px 0 2px $warning-color;
+                & li a {
+                    color: $warning-color;
+                }
+                & li:hover a {
+                    color: $blackCoral;
+                }
+            }
+        }
+    }
+    & .mobile {
+        & ul.mobile-list {
+            & li:hover {
+                color: $blackCoral;
+            }
+        }
+    }
+}
+
+.nav.color-light {
+    color: $light;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $light;
+        }
+    }
+}
+
+.nav.color-primary {
+    color: $primary;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $primary;
+        }
+    }
+}
+
+.nav.color-info {
+    color: $info;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $info;
+        }
+    }
+}
+
+.nav.color-secondary {
+    color: $secondary;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $secondary;
+        }
+    }
+}
+
+.nav.color-success {
+    color: $success;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $success;
+        }
+    }
+}
+
+.nav.color-danger {
+    color: $danger;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $danger;
+        }
+    }
+}
+
+.nav.color-warning {
+    color: $warning;
+    & .menu {
+        & .hamburger,
+        & .hamburger:after,
+        & .hamburger:before {
+            background-color: $warning;
+        }
+    }
+}

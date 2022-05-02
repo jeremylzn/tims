@@ -1,0 +1,114 @@
+@import "variables/color";
+
+.hr {
+    display: block;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.hr.left {
+    margin-left: 0 !important;
+}
+
+.hr.right {
+    margin-right: 0 !important;
+}
+
+.hr.center {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+// default colors
+.hr.light {
+    border-top-color: $light;
+}
+.hr.dark {
+    border-top-color: $dark;
+}
+.hr.success {
+    border-top-color: $success;
+}
+.hr.danger {
+    border-top-color: $danger;
+}
+.hr.warning {
+    border-top-color: $warning;
+}
+.hr.secondary {
+    border-top-color: $secondary;
+}
+.hr.primary {
+    border-top-color: $primary;
+}
+.hr.info {
+    border-top-color: $info;
+}
+
+// styles
+.hr.dashed {
+    border-top-style: dashed;
+}
+
+.hr.dotted {
+    border-top-style: dotted;
+}
+
+.hr.double {
+    border-top-style: double;
+}
+
+// sizes
+.hr.sm {
+    border-top-width: 3px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.hr.md {
+    border-top-width: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.hr.lg {
+    border-top-width: 7px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.hr.xl {
+    border-top-width: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.hr.xxl {
+    border-top-width: 15px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+// width
+.hr.short {
+    width: 20%;
+}
+
+.hr.medium {
+    width: 40%;
+}
+
+.hr.wide {
+    width: 85%;
+}
+
+.hr.full {
+    width: 100%;
+}
