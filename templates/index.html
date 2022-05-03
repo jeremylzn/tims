@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TIMS</title>
 
     <!-- STYLE -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/poke-css/main/main.css') }}">
@@ -13,6 +13,17 @@
 
     <!-- ICON -->
     <link rel="icon" href="{{ url_for('static', filename='img/tims-alone.png') }}">
+
+    <!-- SOCKETIO -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/sio.js')}}"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+        // socket.on('connect', function () {
+        // socket.emit('message', {
+        // data: 'I\'m connected!'
+        // });
+        // });
+    </script>
 </head>
 
 <body>
@@ -36,7 +47,7 @@
 
 
 
-    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3 show" id="register-container">
+    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="register-container">
 
         <span class="badge xl absolute-badge">1. Register your Telegram App</span>
 
@@ -70,7 +81,7 @@
             </div>
 
             <div class="form-item">
-                <button class="btn lg outline" type="submit">Register my app</button>
+                <button class="btn lg outline" type="submit">Submit my Telegram data</button>
             </div>
 
         </form>
@@ -83,10 +94,39 @@
     </div>
 
 
+    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="confirm-container">
+
+        <span class="badge xl absolute-badge">2. Confirm your phone code</span>
+
+        <form id="confirm-form" class="form-group form-rounded lg">
+
+            <div class="form-item">
+                <label>Code</label>
+                <input type="text" name="phone_code" id="" value="brabra">
+
+                <span class="form-hint">
+                    Phone confirmation code
+                </span>
+            </div>
+
+            <div class="form-item">
+                <button class="btn lg outline" type="submit">Register my app</button>
+            </div>
+
+        </form>
+
+        <div class="loader-spinner" id="confirm-loader">
+            <div></div>
+            <div></div>
+        </div>
+
+    </div>
+
+
 
     <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="messaging-container">
 
-        <span class="badge xl absolute-badge">2. Start sending messages</span>
+        <span class="badge xl absolute-badge">3. Start sending messages</span>
 
         <form id="message-form" class="form-group form-rounded lg">
 
@@ -119,6 +159,7 @@
 
             <div class="form-item">
                 <button class="btn lg outline" type="submit">Send my message</button>
+                <button class="btn lg outline" type="button" id="stop-message">Stop</button>
             </div>
 
         </form>

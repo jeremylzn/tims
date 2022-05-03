@@ -11,11 +11,11 @@
 
 
 
-#register-container, #messaging-container, #register-loader {
+#register-container, #confirm-container, #messaging-container, #register-loader, #confirm-loader {
     display: none;
 }
 
-#register-loader {
+#register-loader, #confirm-loader {
     margin: auto;
 }
 
