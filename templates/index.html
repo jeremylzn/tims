@@ -10,6 +10,7 @@
     <!-- STYLE -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/poke-css/main/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/main/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/main/animate.css') }}">
 
     <!-- ICON -->
     <link rel="icon" href="{{ url_for('static', filename='img/tims-alone.png') }}">
@@ -28,15 +29,21 @@
 
 <body>
 
+    <button id="deregister-button" class="btn lg rounded-lg warning animate__animated animate__heartBeat"
+        style="position: fixed; bottom: 20px; right: 20px; z-index: 99;">DEREGISTER</button>
+
     <nav>
         <div class="logo">
             <img src="../static/img/tims-alone.png" alt="logo" class="rounded-sm shadow-lg">
         </div>
 
         <ul>
-            <li>Home</li>
-            <li>Deregister</li>
-            <li>About</li>
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
         </ul>
 
 
@@ -49,7 +56,7 @@
 
     <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="register-container">
 
-        <span class="badge xl absolute-badge">1. Register your Telegram App</span>
+        <span class="badge xl absolute-badge">Register your Telegram App</span>
 
         <form id="register-form" class="form-group form-rounded form-row lg">
 
@@ -96,7 +103,7 @@
 
     <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="confirm-container">
 
-        <span class="badge xl absolute-badge">2. Confirm your phone code</span>
+        <span class="badge xl absolute-badge">Confirm your phone code</span>
 
         <form id="confirm-form" class="form-group form-rounded lg">
 
@@ -126,7 +133,7 @@
 
     <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="messaging-container">
 
-        <span class="badge xl absolute-badge">3. Start sending messages</span>
+        <span class="badge xl absolute-badge">Compose your message</span>
 
         <form id="message-form" class="form-group form-rounded lg">
 
@@ -144,7 +151,11 @@
                 <textarea rows="10" name="channels" placeholder="channel1--channel">channel1--channel</textarea>
 
                 <span class="form-hint">
-                    Your divided by --, do not start or end with '--'
+                    Enter preffered channels divided by --, do not start or end with '--'
+                </span>
+                <span class="form-hint">
+                    You must be a member of the channels you'll be entering otherwise message won't be send into
+                    those...
                 </span>
             </div>
 
@@ -159,12 +170,43 @@
 
             <div class="form-item">
                 <button class="btn lg outline" type="submit">Send my message</button>
-                <button class="btn lg outline" type="button" id="stop-message">Stop</button>
             </div>
 
         </form>
 
+        <div class="loader-spinner" id="message-loader">
+            <div></div>
+            <div></div>
+        </div>
+
     </div>
+
+
+    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="working-container">
+
+        <span class="badge xl absolute-badge">Sending...</span>
+
+
+        <div class="container fluid">
+
+
+            <div class="bg-dark p-4 mt-4">
+                <div id="stats">
+                    <p>Status: <span id="status">...</span></p>
+                    <p>Count: <span id="count">...</span></p>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button class="btn lg outline" type="button" id="stop-message">Stop</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
 
     <script src="{{url_for('static', filename='js/app.js')}}"></script>
 </body>

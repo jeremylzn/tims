@@ -1,7 +1,7 @@
-# pyjwt
-# flask_cors
-# flask
-# flask_socketio
+# pip install pyjwt
+# pip install flask_cors
+# pip install flask
+# pip install flask_socketio
 
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
@@ -15,6 +15,7 @@ from helper import Response
 app = Flask(__name__)
 CORS(app)
 socketio = SocketIO(app)
+msgCtrl = Message(socketio)
 
 
 
@@ -33,32 +34,26 @@ async def register():
 @app.route('/confirm', methods=['POST'])
 async def confirm():
     req = request.json
-    return {
-        'confirmed': True,
-        'message': 'Destination route reached!',
-        'data': req
-    }
+    return await Register.confirm(req['token'], req['phone_code'])
+
 
 
 @app.route('/message', methods=['POST'])
 async def message():
     req = request.json
-    Message(socketio).startInterval()
-    
-    return Response.create('data', 'message')
+    return msgCtrl.startInterval(req)
 
 
 @app.route('/message/stop', methods=['POST'])
 async def stopMessage():
     req = request.json
-    Message(socketio).stopInterval()
-
-    return Response.create('data', 'message')
+    return msgCtrl.stopInterval()
 
 
-# while True:
-#     emit('tims-request-send-message', ['hello', 'there'])
-#     time.sleep(1)
+@app.route('/deregister', methods=['POST'])
+async def deregister():
+    req = request.json
+    return await Register.deregister(req['token'])
 
 if __name__ == '__main__':
     # app.run(host='0.0.0.0', port='80', debug=True, threaded=True)
