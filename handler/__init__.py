@@ -178,7 +178,7 @@ class Message():
                         })
                         pass
                     except Exception as e:
-                        error.append({
+                        unsuccess.append({
                             'channel': channel,
                             'reason': str(e),
                             'error': 'restart shilling without this channel',
@@ -199,8 +199,8 @@ class Message():
                     'error': error
                 }
             })
-            # time.sleep(int(requestdata['interval']) * 60 if int(requestdata['interval']) else 60)
-            time.sleep(int(requestdata['interval']) * 5 if int(requestdata['interval']) else 5)
+            time.sleep(int(requestdata['interval']) * 60 if int(requestdata['interval']) else 60)
+            # time.sleep(int(requestdata['interval']) * 5 if int(requestdata['interval']) else 5)
 
 
    
