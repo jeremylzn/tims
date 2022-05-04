@@ -114,18 +114,18 @@ class Message():
             unsuccess = []
             error = []
             decodedToken = Token.decode(requestdata['token'])
+            message = requestdata['message']
             async with TelegramClient(StringSession(decodedToken['access_token']), decodedToken['api_id'], decodedToken['api_hash']) as client:
 
                 await client.connect()
                 for channel in requestdata['channels']:
                     
                     try:
-                        await client.send_message(channel, requestdata['message'], link_preview=True, parse_mode='md')
-                        
+                        await client.send_message(channel, message, link_preview=True, parse_mode='md')
                         
                         count += 1
                         success.append({
-                            'channel': channel['username']
+                            'channel': channel
                         })
 
 
@@ -218,7 +218,7 @@ class Message():
                 req['interval'] = '60' 
 
             await self.__sendMessage(req)
-            return Response.success({}, 'Loop exited from start function!')
+            return Response.success({}, 'Loop stopped successfully!')
 
         except Exception as e:
             return Response.error({}, '#handler/startInterval - ' + str(e))
@@ -236,6 +236,6 @@ class Message():
                 'status': 'standby'
             })
 
-            return Response.success({}, 'Loop ended successfully!')
+            return Response.success({}, 'Loop STOP command started!')
         except Exception as e:
             return Response.error({}, '#handler/stopInterval - ' + str(e))
