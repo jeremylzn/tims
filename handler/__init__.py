@@ -76,6 +76,8 @@ class Register():
             }, 'Password required!', ['password'])
             
         except Exception as e:
+            if os.path.exists(session_path + api_hash + '.session'):
+                os.remove(session_path + api_hash + '.session')
             return Response.error({}, '#handler/confirmAuthenticationDetails - ' + str(e))
 
 
