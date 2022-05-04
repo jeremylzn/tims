@@ -1,5 +1,5 @@
-const url = 'http://192.168.0.16'
-// const url = 'https://timstestenv.herokuapp.com/'
+// const url = 'http://192.168.0.16'
+const url = 'https://timstestenv.herokuapp.com/'
 
 window.onload = async function () {
     const registerForm = document.querySelector('#register-form')
