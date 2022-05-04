@@ -15,18 +15,21 @@
 #confirm-container, 
 #messaging-container, 
 #working-container,
+#password-container,
 
 #deregister-button,
 
 #register-loader,
 #confirm-loader,
-#message-loader {
+#message-loader,
+#password-loader {
     display: none;
 }
 
 #register-loader,
 #confirm-loader,
-#message-loader{
+#message-loader,
+#password-loader{
     margin: auto;
 }
 

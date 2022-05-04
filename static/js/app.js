@@ -3,10 +3,12 @@ const url = 'http://192.168.0.16'
 window.onload = async function () {
     const registerForm = document.querySelector('#register-form')
     const confirmForm = document.querySelector('#confirm-form')
+    const passForm = document.querySelector('#password-form')
     const messageForm = document.querySelector('#message-form')
 
     const registerLoader = document.querySelector('#register-loader')
     const confirmLoader = document.querySelector('#confirm-loader')
+    const passLoader = document.querySelector('#password-loader')
     const messageLoader = document.querySelector('#message-loader')
 
     const stopButton = document.querySelector('#stop-message')
@@ -21,8 +23,7 @@ window.onload = async function () {
         localStorage.setItem('tims', JSON.stringify({
             form: {
                 step: 'register'
-            },
-            token: ''
+            }
         }))
     }
 
@@ -47,7 +48,7 @@ window.onload = async function () {
                     ...ld.form,
                     step: 'confirm'
                 },
-                token: go.data
+                data: go.data
             }))
         }
         formUiController()
@@ -61,24 +62,36 @@ window.onload = async function () {
     // SECOND STEP 
     // CONFIRM
     confirmForm.addEventListener('submit', async function (event) {
+        event.preventDefault()
         const ld = JSON.parse(localStorage.getItem('tims'))
         cssClassChecker(confirmLoader, ['show'], [true])
         cssClassChecker(confirmForm, ['no-show'], [true])
-        event.preventDefault()
 
-        const go = await requestAPI(url + '/confirm', 'post', {
-            ...getFormDataAndReturnJSON(event.target),
-            token: ld.token
-        })
+        const data = {
+            ...ld.data,
+            ...getFormDataAndReturnJSON(event.target)
+        }
+
+        const go = await requestAPI(url + '/confirm/code', 'post', data)
         console.log('go: ', go)
-        if (go) {
+        if (go && !go.required) {
             localStorage.setItem('tims', JSON.stringify({
                 ...ld,
                 form: {
                     ...ld.form,
                     step: 'messaging'
                 },
-                token: go.data
+                data: go.data
+            }))
+        }
+        else if (go && go.required) {
+            localStorage.setItem('tims', JSON.stringify({
+                ...ld,
+                form: {
+                    ...ld.form,
+                    step: 'password'
+                },
+                data: go.data
             }))
         }
         formUiController()
@@ -88,8 +101,37 @@ window.onload = async function () {
     })
 
 
+    // PASSWORD
+    passForm.addEventListener('submit', async function (event) {
+        event.preventDefault()
+        const ld = JSON.parse(localStorage.getItem('tims'))
+        cssClassChecker(passLoader, ['show'], [true])
+        cssClassChecker(passForm, ['no-show'], [true])
 
-    // THIRD STEP
+        const data = {
+            ...ld.data,
+            ...getFormDataAndReturnJSON(event.target)
+        }
+
+        const go = await requestAPI(url + '/confirm/password', 'post', data)
+        console.log('go: ', go)
+        if (go) {
+            localStorage.setItem('tims', JSON.stringify({
+                ...ld,
+                form: {
+                    ...ld.form,
+                    step: 'messaging'
+                },
+                data: go.data
+            }))
+        }
+        formUiController()
+        cssClassChecker(passLoader, ['show'], [false])
+        cssClassChecker(passForm, ['no-show'], [false])
+    })
+
+
+
     // MESSAGING
     messageForm.addEventListener('submit', async function (event) {
         const ld = JSON.parse(localStorage.getItem('tims'))
@@ -120,7 +162,10 @@ window.onload = async function () {
     // DEREGISTER TELEGRAM APP
     deregisterBtn.addEventListener('click', async function () {
         const ld = JSON.parse(localStorage.getItem('tims'))
-        const go = await requestAPI(url + '/deregister', 'post', JSON.parse(localStorage.getItem('tims')))
+        console.log('ld: ', ld)
+        const go = await requestAPI(url + '/deregister', 'post', {
+            token: ld.data.token
+        })
         console.log('go: ', go)
         if (go) {
             localStorage.setItem('tims', JSON.stringify({
@@ -129,7 +174,7 @@ window.onload = async function () {
                     ...ld.form,
                     step: 'register'
                 },
-                token: ''
+                data: {}
             }))
         }
 
@@ -191,23 +236,24 @@ window.onload = async function () {
 async function requestAPI(url, method, data = {}, success = function () { }) {
     try {
 
-        const res = await fetch(url, {
+        const req = await fetch(url, {
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' },
             method: method
         })
+        const response = await req.json()
+        // console.log('response: ', response)
 
-        const resData = await res.json()
-        if (res.status === 200) {
-            success()
-            return resData
-        } else {
-            alert(res)
-            return false
+        if (!response.status) {
+            throw response.message
         }
+        success()
+        return response
+
 
     } catch (error) {
-        console.warn(error)
+        console.error(error)
+        alert('ERROR ARISED:\n' + error)
         return false
     }
 }
@@ -220,6 +266,7 @@ function formUiController() {
     const confirmCont = document.querySelector('#confirm-container')
     const messagingCont = document.querySelector('#messaging-container')
     const workingCont = document.querySelector('#working-container')
+    const passCont = document.querySelector('#password-container')
 
     const deregisterBtn = document.querySelector('#deregister-button')
 
@@ -233,6 +280,7 @@ function formUiController() {
             cssClassChecker(messagingCont, cssClasses, [false, true])
             cssClassChecker(workingCont, cssClasses, [false, true])
             cssClassChecker(deregisterBtn, cssClasses, [false, true])
+            cssClassChecker(passCont, cssClasses, [false, true])
             break
         case 'confirm':
             cssClassChecker(registerCont, cssClasses, [false, true])
@@ -240,6 +288,16 @@ function formUiController() {
             cssClassChecker(messagingCont, cssClasses, [false, true])
             cssClassChecker(workingCont, cssClasses, [false, true])
             cssClassChecker(deregisterBtn, cssClasses, [false, true])
+            cssClassChecker(passCont, cssClasses, [false, true])
+            break
+        case 'password':
+            cssClassChecker(registerCont, cssClasses, [false, true])
+            cssClassChecker(confirmCont, cssClasses, [false, true])
+            cssClassChecker(messagingCont, cssClasses, [false, true])
+            cssClassChecker(workingCont, cssClasses, [false, true])
+            cssClassChecker(deregisterBtn, cssClasses, [false, true])
+            cssClassChecker(passCont, cssClasses, [true, false])
+
             break
         case 'messaging':
             cssClassChecker(registerCont, cssClasses, [false, true])
@@ -247,6 +305,7 @@ function formUiController() {
             cssClassChecker(messagingCont, cssClasses, [true, false])
             cssClassChecker(workingCont, cssClasses, [false, true])
             cssClassChecker(deregisterBtn, cssClasses, [true, false])
+            cssClassChecker(passCont, cssClasses, [false, true])
             break
         case 'working':
             cssClassChecker(registerCont, cssClasses, [false, true])
@@ -254,6 +313,7 @@ function formUiController() {
             cssClassChecker(messagingCont, cssClasses, [false, true])
             cssClassChecker(workingCont, cssClasses, [true, false])
             cssClassChecker(deregisterBtn, cssClasses, [false, false])
+            cssClassChecker(passCont, cssClasses, [false, true])
             break
         default:
             console.log('register-default-state');
@@ -261,6 +321,7 @@ function formUiController() {
             cssClassChecker(confirmCont, cssClasses, [false, true])
             cssClassChecker(messagingCont, cssClasses, [false, true])
             cssClassChecker(workingCont, cssClasses, [false, true])
+            cssClassChecker(passCont, cssClasses, [false, true])
             cssClassChecker(deregisterBtn, cssClasses, [false, false])
             break
     }

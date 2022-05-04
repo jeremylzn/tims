@@ -54,37 +54,39 @@
 
 
 
-    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="register-container">
+    <div class="container lg border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="register-container">
 
         <span class="badge xl absolute-badge">Register your Telegram App</span>
 
-        <form id="register-form" class="form-group form-rounded form-row lg">
+        <form id="register-form">
 
-            <div class="form-item">
-                <label>ID</label>
-                <input type="text" name="id" id="" value="id">
+            <div class="form-group form-row form-rounded lg">
+                <div class="form-item">
+                    <label>ID</label>
+                    <input type="text" name="api_id" id="" value="6213869">
 
-                <span class="form-hint">
-                    Your Telegram ID
-                </span>
-            </div>
+                    <span class="form-hint">
+                        Your Telegram ID
+                    </span>
+                </div>
 
-            <div class="form-item">
-                <label>Hash</label>
-                <input type="text" name="hash" value="hash">
+                <div class="form-item">
+                    <label>Hash</label>
+                    <input type="text" name="api_hash" value="e51d8b97ae6c39efab73125cadf23676">
 
-                <span class="form-hint">
-                    Your Telegram Hash Key
-                </span>
-            </div>
+                    <span class="form-hint">
+                        Your Telegram Hash Key
+                    </span>
+                </div>
 
-            <div class="form-item">
-                <label>Phone</label>
-                <input type="text" name="phone" value="phone">
+                <div class="form-item">
+                    <label>Phone</label>
+                    <input type="text" name="phone" value="00447424928497">
 
-                <span class="form-hint">
-                    An updated phone number to your Telegram account
-                </span>
+                    <span class="form-hint">
+                        An updated phone number to your Telegram account
+                    </span>
+                </div>
             </div>
 
             <div class="form-item">
@@ -107,9 +109,9 @@
 
         <form id="confirm-form" class="form-group form-rounded lg">
 
-            <div class="form-item">
+            <div class="form-item" id="phone_code_form_item">
                 <label>Code</label>
-                <input type="text" name="phone_code" id="" value="brabra">
+                <input type="text" name="phone_code" id="">
 
                 <span class="form-hint">
                     Phone confirmation code
@@ -123,6 +125,35 @@
         </form>
 
         <div class="loader-spinner" id="confirm-loader">
+            <div></div>
+            <div></div>
+        </div>
+
+    </div>
+
+
+    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="password-container">
+
+        <span class="badge xl absolute-badge">Enter your password</span>
+
+        <form id="password-form" class="form-group form-rounded lg">
+
+            <div class="form-item">
+                <label>Password</label>
+                <input type="text" name="password" id="">
+
+                <span class="form-hint">
+                    Please enter your Telegram password
+                </span>
+            </div>
+
+            <div class="form-item">
+                <button class="btn lg outline" type="submit">Register my app</button>
+            </div>
+
+        </form>
+
+        <div class="loader-spinner" id="password-loader">
             <div></div>
             <div></div>
         </div>
