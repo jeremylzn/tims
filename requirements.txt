@@ -36,3 +36,4 @@ Telethon==1.24.0
 uvicorn==0.17.6
 Werkzeug==2.1.2
 yarl==1.7.2
+gunicorn
