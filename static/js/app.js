@@ -164,7 +164,7 @@ window.onload = async function () {
     // DEREGISTER TELEGRAM APP
     deregisterBtn.addEventListener('click', async function () {
         const ld = JSON.parse(localStorage.getItem('tims'))
-        console.log('ld: ', ld)
+        // console.log('ld: ', ld)
         const go = await requestAPI(url + '/deregister', 'post', {
             token: ld.data.token
         })
