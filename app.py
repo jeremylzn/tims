@@ -2,7 +2,6 @@
 # pip install flask_cors
 # pip install flask
 # pip install flask_socketio
-
 # pip install telethon
 
 from flask import Flask, request, render_template, jsonify
