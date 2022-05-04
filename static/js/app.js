@@ -139,8 +139,9 @@ window.onload = async function () {
 
         const formData = getFormDataAndReturnJSON(event.target)
         const data = {
+            ...ld.data,
             ...formData,
-            channels: formData.channels.split('--')
+            channels: formData.channels.split('@')
         }
 
 

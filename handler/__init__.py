@@ -1,16 +1,14 @@
-from telethon import TelegramClient, functions, types, errors
+from telethon import TelegramClient, functions, errors
 from telethon.sessions import StringSession
-from flask import request, abort
 import time
 import os
 
 from helper import Response
 from handler.auth import Token
-from handler.telethon import THandler
 
 
 state = False
-count = 1
+count = 0
 error_msg = 'Your request has successfully reached its destination but there are some internal errors!'
 session_path = 'session/'
 
@@ -105,49 +103,139 @@ class Message():
 
 
     async def __sendMessage(self, requestdata={}):
+
         global count
         global state
-        while state == True:
+        global session_path
+
+        while state == True:  
+
+            success = []
+            unsuccess = []
+            error = []
+            decodedToken = Token.decode(requestdata['token'])
+            async with TelegramClient(StringSession(decodedToken['access_token']), decodedToken['api_id'], decodedToken['api_hash']) as client:
+
+                await client.connect()
+                for channel in requestdata['channels']:
+                    
+                    try:
+                        await client.send_message(channel, requestdata['message'], link_preview=True, parse_mode='md')
+                        
+                        
+                        count += 1
+                        success.append({
+                            'channel': channel['username']
+                        })
+
+
+                    except errors.rpcerrorlist.SlowModeWaitError as e:
+                        unsuccess.append({
+                            'channel': channel,
+                            'reason': 'SlowModeWaitError for '+str(e.seconds)+' seconds',
+                            'error': str(e.message),
+                            'type': 'slowmode'
+                        })
+                        pass
+                    except errors.rpcerrorlist.ChannelPrivateError as e:
+                        unsuccess.append({
+                            'channel': channel,
+                            'reason': 'ChannelPrivateError',
+                            'error': str(e.message),
+                            'type': 'privacy'
+                        })
+                        pass
+                    except errors.rpcerrorlist.ChatWriteForbiddenError as e:
+                        unsuccess.append({
+                            'channel': channel,
+                            'reason': 'ChatWriteForbiddenError',
+                            'error': str(e.message),
+                            'type': 'forbidden'
+                        })
+                        pass
+                    except errors.rpcerrorlist.ChatRestrictedError as e:
+                        unsuccess.append({
+                            'channel': channel,
+                            'reason': 'ChatRestrictedError',
+                            'error': str(e.message),
+                            'type': 'restricted'
+                        })
+                        pass
+                    except errors.rpcerrorlist.UserBannedInChannelError as e:
+                        unsuccess.append({
+                            'channel': channel,
+                            'reason': 'UserBannedInChannelError',
+                            'error': str(e.message),
+                            'type': 'banned'
+                        })
+                        pass
+                    except errors.rpcerrorlist.TimeoutError as e:
+                        unsuccess.append({
+                            'channel': channel,
+                            'reason': 'TimeoutError',
+                            'error': str(e),
+                            'type': 'timeout'
+                        })
+                        pass
+                    except Exception as e:
+                        error.append({
+                            'channel': channel,
+                            'reason': str(e),
+                            'error': 'restart shilling without this channel',
+                            'type': 'general'
+                        })
+                        pass
+
+                await client.disconnect()
+
+
             self.sio.emit('tims-request-send-message', {
                 'count': count,
                 'status': 'working',
-                'data': requestdata
+                'data': requestdata,
+                'stats': {
+                    'success': success,
+                    'unsuccess': unsuccess,
+                    'error': error
+                }
             })
-
-            channels = ('timsTestChannels', 'TestTelegram2025', 'TestTelegram2024')
-
-            for channel in channels:
-                # print(channel)
-                await THandler.send_message(channel)
-                # THandler.aborted()
-
-            
-
-            count += 1
             # time.sleep(int(requestdata['interval']) * 60 if int(requestdata['interval']) else 60)
             time.sleep(int(requestdata['interval']) * 5 if int(requestdata['interval']) else 5)
 
 
+   
+
+
         
     async def startInterval(self, req):
-        global state
-        state = True
-        if int(req['interval']) < 1:
-            req['interval'] = '1'
-        if int(req['interval']) > 60:
-            req['interval'] = '60' 
-        await self.__sendMessage(req)
-        return Response.create({}, 'Loop ended!')
+        try:
+            global state
+            state = True
+
+            if int(req['interval']) < 1:
+                req['interval'] = '1'
+            if int(req['interval']) > 60:
+                req['interval'] = '60' 
+
+            await self.__sendMessage(req)
+            return Response.success({}, 'Loop exited from start function!')
+
+        except Exception as e:
+            return Response.error({}, '#handler/startInterval - ' + str(e))
 
 
     async def stopInterval(self):
-        global state
-        global count
-        state = False
-        await self.__sendMessage()
+        try:
+            global state
+            global count
+            state = False
+            await self.__sendMessage()
 
-        self.sio.emit('tims-request-send-message', {
-            'count': count,
-            'status': 'standby'
-        })
-        return Response.create({}, 'Loop ended successfully!')
+            self.sio.emit('tims-request-send-message', {
+                'count': count,
+                'status': 'standby'
+            })
+
+            return Response.success({}, 'Loop ended successfully!')
+        except Exception as e:
+            return Response.error({}, '#handler/stopInterval - ' + str(e))
