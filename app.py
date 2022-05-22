@@ -1,13 +1,11 @@
 # pip install pyjwt
 # pip install flask_cors
 # pip install flask
-# pip install flask_socketio
 # pip install telethon
 
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
 
-# from flask_socketio import SocketIO
 import time
 
 
@@ -15,15 +13,8 @@ from handler import Register, Message
 from helper import Response
 
 app = Flask(__name__)
-app.debug = True
+app.testing = True
 CORS(app)
-# socketio = SocketIO(app)
-# msgCtrl = Message(socketio)
-
-
-# @socketio.on("message")
-# def handle_message(data):
-#     print("received message: " + data)
 
 
 # FETCH HOME PAGE
@@ -106,12 +97,11 @@ async def message():
     return Response.success(await Message.sendMessage(req), "")
 
 
-@app.route("/message/stop", methods=["POST"])
-async def stopMessage():
-    req = request.json
-    return Response.success(req, "")
+# @app.route("/message/stop", methods=["POST"])
+# async def stopMessage():
+#     req = request.json
+#     return Response.success(req, "")
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="80", debug=True, threaded=True)
-    # socketio.run(app, host="0.0.0.0", port="80")
+    app.run(host="0.0.0.0", port="80", debug=True)

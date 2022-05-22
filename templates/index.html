@@ -15,15 +15,6 @@
     <!-- ICON -->
     <link rel="icon" href="{{ url_for('static', filename='img/tims-alone.png') }}">
 
-    <!-- SOCKETIO -->
-
-    <script type="text/javascript" charset="utf-8">
-        // socket.on('connect', function () {
-        // socket.emit('message', {
-        // data: 'I\'m connected!'
-        // });
-        // });
-    </script>
 </head>
 
 <body>
@@ -215,7 +206,7 @@
         </div>
 
 
-        <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="working-container">
+        <div class="container lg border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="working-container">
 
             <span class="badge xl absolute-badge">Sending...</span>
 
@@ -227,6 +218,9 @@
                     <div id="stats">
                         <p>Status: <span id="status">...</span></p>
                         <p>Count: <span id="count">...</span></p>
+
+                        <ul id="success" style="margin: 0px; padding: 0px;"></ul>
+                        <ul id="unsuccess" style="margin: 0px; padding: 0px;"></ul>
                     </div>
                 </div>
 
@@ -238,10 +232,12 @@
 
 
         </div>
+
     </div>
+    <!-- <div id="timer" style="position: absolute; top: 10px; right: 10px;"></div> -->
 
 
-    <!-- <script type="text/javascript" src="{{url_for('static', filename='js/sio.js')}}"></script> -->
+
     <script src="{{url_for('static', filename='js/app.js')}}"></script>
 </body>
 

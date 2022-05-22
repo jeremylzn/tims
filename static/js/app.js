@@ -1,13 +1,8 @@
 const url = 'http://localhost:5000'
 let interval = null
-// const socket = io()
-
-// socket.on('connect', function () {
-//     socket.emit('message', 'I\'m connected!');
-//     console.log('connected');
-// });
-
-
+let timerInterval = null
+let working = false
+let count = 0
 
 window.onload = async function () {
 
@@ -28,7 +23,7 @@ window.onload = async function () {
     const deregisterBtn = document.querySelector('#deregister-button')
 
     const stats = document.querySelector('#stats')
-
+    stats.querySelector('#count').innerHTML = count
 
 
     if (!localStorage.getItem('tims')) {
@@ -51,16 +46,15 @@ window.onload = async function () {
         cssClassChecker(registerForm, ['no-show'], [true])
         event.preventDefault()
 
-        const go = await requestAPI(url + '/register', 'post', getFormDataAndReturnJSON(event.target))
-        console.log('go: ', go)
-        if (go) {
+        const request = await requestAPI(url + '/register', 'post', getFormDataAndReturnJSON(event.target))
+        if (request) {
             localStorage.setItem('tims', JSON.stringify({
                 ...ld,
                 form: {
                     ...ld.form,
                     step: 'confirm'
                 },
-                data: go.data
+                data: request.data
             }))
         }
         formUiController()
@@ -84,26 +78,25 @@ window.onload = async function () {
             ...getFormDataAndReturnJSON(event.target)
         }
 
-        const go = await requestAPI(url + '/confirm/code', 'post', data)
-        console.log('go: ', go)
-        if (go && !go.required) {
+        const request = await requestAPI(url + '/confirm/code', 'post', data)
+        if (request && !request.required) {
             localStorage.setItem('tims', JSON.stringify({
                 ...ld,
                 form: {
                     ...ld.form,
                     step: 'messaging'
                 },
-                data: go.data
+                data: request.data
             }))
         }
-        else if (go && go.required) {
+        else if (request && request.required) {
             localStorage.setItem('tims', JSON.stringify({
                 ...ld,
                 form: {
                     ...ld.form,
                     step: 'password'
                 },
-                data: go.data
+                data: request.data
             }))
         }
         formUiController()
@@ -125,16 +118,15 @@ window.onload = async function () {
             ...getFormDataAndReturnJSON(event.target)
         }
 
-        const go = await requestAPI(url + '/confirm/password', 'post', data)
-        console.log('go: ', go)
-        if (go) {
+        const request = await requestAPI(url + '/confirm/password', 'post', data)
+        if (request) {
             localStorage.setItem('tims', JSON.stringify({
                 ...ld,
                 form: {
                     ...ld.form,
                     step: 'messaging'
                 },
-                data: go.data
+                data: request.data
             }))
         }
         formUiController()
@@ -157,22 +149,16 @@ window.onload = async function () {
         }
 
 
-        localStorage.setItem('tims', JSON.stringify({
-            ...ld,
-            form: {
-                ...ld.form,
-                step: 'working'
-            }
-        }))
+        working = true
         formUiController()
 
-        const go = await requestAPI(url + '/message', 'post', data)
-        console.log('go: ', go)
+        const request = await requestAPI(url + '/message', 'post', data)
+        setStats(request)
 
         // loop
         interval = setInterval(async function () {
-            const go = await requestAPI(url + '/message', 'post', data)
-            console.log('go: ', go)
+            const request = await requestAPI(url + '/message', 'post', data)
+            setStats(request)
         }, +formData.interval * 60000)
 
 
@@ -182,12 +168,10 @@ window.onload = async function () {
     // DEREGISTER TELEGRAM APP
     deregisterBtn.addEventListener('click', async function () {
         const ld = JSON.parse(localStorage.getItem('tims'))
-        // console.log('ld: ', ld)
-        const go = await requestAPI(url + '/deregister', 'post', {
+        const request = await requestAPI(url + '/deregister', 'post', {
             token: ld.data.token
         })
-        console.log('go: ', go)
-        if (go) {
+        if (request) {
             localStorage.setItem('tims', JSON.stringify({
                 ...ld,
                 form: {
@@ -206,10 +190,9 @@ window.onload = async function () {
 
     // GRAB STOP BUTTON
     stopButton.addEventListener('click', async function () {
-        const ld = JSON.parse(localStorage.getItem('tims'))
-        const go = await requestAPI(url + '/message/stop', 'post', { data: 'data' })
-        console.log('go: ', go)
-        if (go) {
+        /* const ld = JSON.parse(localStorage.getItem('tims'))
+        const request = await requestAPI(url + '/message/stop', 'post', { data: 'data' })
+        if (request) {
             localStorage.setItem('tims', JSON.stringify({
                 ...ld,
                 form: {
@@ -217,10 +200,14 @@ window.onload = async function () {
                     step: 'messaging'
                 }
             }))
-        }
-        formUiController()
-
+        } */
+        working = false
+        count = 0
         clearInterval(interval)
+        if (timerInterval) clearInterval(timerInterval)
+        formUiController()
+        setStats()
+
     })
 
 
@@ -228,36 +215,15 @@ window.onload = async function () {
     // GRAB RANGE SLIDER
     const slider = document.querySelector('#interval')
     const sliderDataField = document.querySelector('#interval-data')
-    sliderDataField.innerHTML = slider.value
+    sliderDataField.innerHTML = `${slider.value} ${slider.value === '1' ? 'minute' : 'minutes'}`
     slider.addEventListener('input', function (event) {
-        sliderDataField.innerHTML = event.target.value
+        sliderDataField.innerHTML = `${event.target.value} ${event.target.value === '1' ? 'minute' : 'minutes'}`
     })
 
 
 
 
 }
-
-
-// WEBSOCKET
-// socket.on('tims-request-send-message', async function (data) {
-//     stats.querySelector('#count').innerHTML = '...'
-//     const ld = JSON.parse(localStorage.getItem('tims'))
-//     if (ld.form.step != 'working') {
-//         localStorage.setItem('tims', JSON.stringify({
-//             ...ld,
-//             form: {
-//                 ...ld.form,
-//                 step: 'working'
-//             }
-//         }))
-//         formUiController()
-//     }
-//     console.log(data);
-//     stats.querySelector('#count').innerHTML = data.count
-//     stats.querySelector('#status').innerHTML = data.status
-// })
-
 
 
 async function requestAPI(url, method, data = {}, success = function () { }) {
@@ -269,8 +235,6 @@ async function requestAPI(url, method, data = {}, success = function () { }) {
             method: method
         })
         const response = await req.json()
-        // console.log('response: ', response)
-
         if (!response.status) {
             throw response.message
         }
@@ -299,7 +263,16 @@ function formUiController() {
 
     const cssClasses = ['show', 'no-show']
 
-    console.log(ld.form.step);
+    if (working) {
+        cssClassChecker(registerCont, cssClasses, [false, true])
+        cssClassChecker(confirmCont, cssClasses, [false, true])
+        cssClassChecker(messagingCont, cssClasses, [false, true])
+        cssClassChecker(workingCont, cssClasses, [true, false])
+        cssClassChecker(deregisterBtn, cssClasses, [false, false])
+        cssClassChecker(passCont, cssClasses, [false, true])
+        return
+    }
+
     switch (ld.form.step) {
         case 'register':
             cssClassChecker(registerCont, cssClasses, [true, false])
@@ -334,23 +307,6 @@ function formUiController() {
             cssClassChecker(deregisterBtn, cssClasses, [true, false])
             cssClassChecker(passCont, cssClasses, [false, true])
             break
-        case 'working':
-            cssClassChecker(registerCont, cssClasses, [false, true])
-            cssClassChecker(confirmCont, cssClasses, [false, true])
-            cssClassChecker(messagingCont, cssClasses, [false, true])
-            cssClassChecker(workingCont, cssClasses, [true, false])
-            cssClassChecker(deregisterBtn, cssClasses, [false, false])
-            cssClassChecker(passCont, cssClasses, [false, true])
-            break
-        default:
-            console.log('register-default-state');
-            cssClassChecker(registerCont, cssClasses, [true, false])
-            cssClassChecker(confirmCont, cssClasses, [false, true])
-            cssClassChecker(messagingCont, cssClasses, [false, true])
-            cssClassChecker(workingCont, cssClasses, [false, true])
-            cssClassChecker(passCont, cssClasses, [false, true])
-            cssClassChecker(deregisterBtn, cssClasses, [false, false])
-            break
     }
 
 
@@ -365,16 +321,78 @@ function cssClassChecker(element, classes = [], desirable = []) {
             element.classList.add(classes[i])
         }
     }
-    // console.log(element.classList);
-
 }
 
 
 function getFormDataAndReturnJSON(target) {
-
     const formData = new FormData(target)
     let data = {}
     formData.forEach((value, key) => (data[key] = value))
     return data
+}
 
+
+function setStats(data = {}) {
+    // console.log('data: ', data)
+    clearInterval(timerInterval)
+    const statsContainer = document.querySelector('#stats')
+    const successList = statsContainer.querySelector('#success')
+    const unsuccessList = statsContainer.querySelector('#unsuccess')
+    successList.innerHTML = ''
+    unsuccessList.innerHTML = ''
+
+    if (data.data && data.data) {
+        const successTitle = document.createElement('p')
+        const unsuccessTitle = document.createElement('p')
+        successTitle.className = unsuccessTitle.className = 'text lg'
+        successTitle.innerHTML = 'Successful'
+        unsuccessTitle.innerHTML = 'Unsuccessful'
+
+        if (data.data.status) {
+            statsContainer.querySelector('#status').innerHTML = data.data.status
+        }
+
+
+        if (data.data.stats.success.length > 0) {
+            successList.appendChild(successTitle)
+            data.data.stats.success.forEach(stat => {
+                const li = document.createElement('li')
+                li.className = 'text success'
+                li.innerHTML = stat.channel
+                successList.appendChild(li)
+                count += 1
+            })
+        }
+        if (data.data.stats.unsuccess.length > 0) {
+            unsuccessList.appendChild(unsuccessTitle)
+            data.data.stats.unsuccess.forEach(stat => {
+                const li = document.createElement('li')
+                li.className = 'text danger'
+                li.innerHTML = `Channel: ${stat.channel} - Error: ${stat.error} - Reason: ${stat.reason} - Type: ${stat.type}`
+                unsuccessList.appendChild(li)
+            })
+        }
+
+        startTimer(60 * Number(data.data.data.interval), statsContainer.querySelector('#status'))
+    }
+
+    statsContainer.querySelector('#count').innerHTML = count
+}
+
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    timerInterval = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
 }

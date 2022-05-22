@@ -110,9 +110,6 @@ class Register:
 
 
 class Message:
-    """def __init__(self, socketio):
-    self.sio = socketio"""
-
     async def sendMessage(requestdata={}):
         global session_path
 
@@ -126,7 +123,6 @@ class Message:
 
         success = []
         unsuccess = []
-        error = []
 
         async with TelegramClient(
             StringSession(access_token), api_id, api_hash
@@ -218,5 +214,5 @@ class Message:
         return {
             "status": "working",
             "data": requestdata,
-            "stats": {"success": success, "unsuccess": unsuccess, "error": error},
+            "stats": {"success": success, "unsuccess": unsuccess},
         }
