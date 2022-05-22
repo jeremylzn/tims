@@ -16,9 +16,8 @@
     <link rel="icon" href="{{ url_for('static', filename='img/tims-alone.png') }}">
 
     <!-- SOCKETIO -->
-    <script type="text/javascript" src="{{url_for('static', filename='js/sio.js')}}"></script>
+
     <script type="text/javascript" charset="utf-8">
-        var socket = io();
         // socket.on('connect', function () {
         // socket.emit('message', {
         // data: 'I\'m connected!'
@@ -31,7 +30,7 @@
 
     <button id="deregister-button" class="btn lg rounded-lg warning animate__animated animate__heartBeat"
         style="position: fixed; bottom: 20px; right: 20px; z-index: 99;">DEREGISTER</button>
-
+    <!--
     <nav>
         <div class="logo">
             <img src="../static/img/tims-alone.png" alt="logo" class="rounded-sm shadow-lg">
@@ -50,196 +49,199 @@
         <div class="logo">
             <img src="../static/img/tims-alone.png" alt="logo" class="rounded-sm shadow-lg">
         </div>
-    </nav>
+    </nav> 
+-->
 
 
 
-    <div class="container lg border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="register-container">
+    <div class="container px-4">
+        <div class="container lg border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="register-container">
 
-        <span class="badge xl absolute-badge">Register your Telegram App</span>
+            <span class="badge xl absolute-badge">Register your Telegram App</span>
 
-        <form id="register-form">
+            <form id="register-form">
 
-            <div class="form-group form-row form-rounded lg">
+                <div class="form-group form-row form-rounded lg">
+                    <div class="form-item">
+                        <label>ID</label>
+                        <input type="text" name="api_id" id="" value="6213869">
+
+                        <span class="form-hint">
+                            Your Telegram ID
+                        </span>
+                    </div>
+
+                    <div class="form-item">
+                        <label>Hash</label>
+                        <input type="text" name="api_hash" value="e51d8b97ae6c39efab73125cadf23676">
+
+                        <span class="form-hint">
+                            Your Telegram Hash Key
+                        </span>
+                    </div>
+
+                    <div class="form-item">
+                        <label>Phone</label>
+                        <input type="text" name="phone" value="00447424928497">
+
+                        <span class="form-hint">
+                            An updated phone number to your Telegram account
+                        </span>
+                    </div>
+                </div>
+
                 <div class="form-item">
-                    <label>ID</label>
-                    <input type="text" name="api_id" id="">
+                    <button class="btn lg outline" type="submit">Submit my Telegram data</button>
+                </div>
+
+            </form>
+
+            <div class="loader-spinner" id="register-loader">
+                <div></div>
+                <div></div>
+            </div>
+
+        </div>
+
+
+        <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="confirm-container">
+
+            <span class="badge xl absolute-badge">Confirm your phone code</span>
+
+            <form id="confirm-form" class="form-group form-rounded lg">
+
+                <div class="form-item" id="phone_code_form_item">
+                    <label>Code</label>
+                    <input type="text" name="phone_code" id="">
 
                     <span class="form-hint">
-                        Your Telegram ID
+                        Phone confirmation code
                     </span>
                 </div>
 
                 <div class="form-item">
-                    <label>Hash</label>
-                    <input type="text" name="api_hash">
+                    <button class="btn lg outline" type="submit">Register my app</button>
+                </div>
+
+            </form>
+
+            <div class="loader-spinner" id="confirm-loader">
+                <div></div>
+                <div></div>
+            </div>
+
+        </div>
+
+
+        <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="password-container">
+
+            <span class="badge xl absolute-badge">Enter your password</span>
+
+            <form id="password-form" class="form-group form-rounded lg">
+
+                <div class="form-item">
+                    <label>Password</label>
+                    <input type="text" name="password" id="">
 
                     <span class="form-hint">
-                        Your Telegram Hash Key
+                        Please enter your Telegram password
                     </span>
                 </div>
 
                 <div class="form-item">
-                    <label>Phone</label>
-                    <input type="text" name="phone">
+                    <button class="btn lg outline" type="submit">Register my app</button>
+                </div>
+
+            </form>
+
+            <div class="loader-spinner" id="password-loader">
+                <div></div>
+                <div></div>
+            </div>
+
+        </div>
+
+
+
+        <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="messaging-container">
+
+            <span class="badge xl absolute-badge">Compose your message</span>
+
+            <form id="message-form" class="form-group form-rounded lg">
+
+                <div class="form-item">
+                    <label>Interval <strong id="interval-data"></strong></label>
+                    <input type="range" id="interval" name="interval" min="1" max="60" step="1" value="1" />
 
                     <span class="form-hint">
-                        An updated phone number to your Telegram account
+                        Messaging interval from 1 to 60 minutes
                     </span>
                 </div>
-            </div>
 
-            <div class="form-item">
-                <button class="btn lg outline" type="submit">Submit my Telegram data</button>
-            </div>
+                <div class="form-item">
+                    <label>Channels</label>
+                    <textarea rows="10" name="channels"
+                        placeholder="channel1@channel">timsTestChannels@TestTelegram2025@TestTelegram2024</textarea>
 
-        </form>
-
-        <div class="loader-spinner" id="register-loader">
-            <div></div>
-            <div></div>
-        </div>
-
-    </div>
-
-
-    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="confirm-container">
-
-        <span class="badge xl absolute-badge">Confirm your phone code</span>
-
-        <form id="confirm-form" class="form-group form-rounded lg">
-
-            <div class="form-item" id="phone_code_form_item">
-                <label>Code</label>
-                <input type="text" name="phone_code" id="">
-
-                <span class="form-hint">
-                    Phone confirmation code
-                </span>
-            </div>
-
-            <div class="form-item">
-                <button class="btn lg outline" type="submit">Register my app</button>
-            </div>
-
-        </form>
-
-        <div class="loader-spinner" id="confirm-loader">
-            <div></div>
-            <div></div>
-        </div>
-
-    </div>
-
-
-    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="password-container">
-
-        <span class="badge xl absolute-badge">Enter your password</span>
-
-        <form id="password-form" class="form-group form-rounded lg">
-
-            <div class="form-item">
-                <label>Password</label>
-                <input type="text" name="password" id="">
-
-                <span class="form-hint">
-                    Please enter your Telegram password
-                </span>
-            </div>
-
-            <div class="form-item">
-                <button class="btn lg outline" type="submit">Register my app</button>
-            </div>
-
-        </form>
-
-        <div class="loader-spinner" id="password-loader">
-            <div></div>
-            <div></div>
-        </div>
-
-    </div>
-
-
-
-    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="messaging-container">
-
-        <span class="badge xl absolute-badge">Compose your message</span>
-
-        <form id="message-form" class="form-group form-rounded lg">
-
-            <div class="form-item">
-                <label>Interval <strong id="interval-data"></strong></label>
-                <input type="range" id="interval" name="interval" min="1" max="60" step="1" value="1" />
-
-                <span class="form-hint">
-                    Messaging interval from 1 to 60 minutes
-                </span>
-            </div>
-
-            <div class="form-item">
-                <label>Channels</label>
-                <textarea rows="10" name="channels"
-                    placeholder="channel1@channel">timsTestChannels@TestTelegram2025@TestTelegram2024</textarea>
-
-                <span class="form-hint">
-                    Enter preffered channels divided by @, do not start or end with '@'
-                </span>
-                <span class="form-hint">
-                    You must be a member of the channels you'll be entering otherwise message won't be send into
-                    those...
-                </span>
-            </div>
-
-            <div class="form-item">
-                <label>Message</label>
-                <textarea rows="10" name="message" placeholder="Hello from TIMS">TIMS</textarea>
-
-                <span class="form-hint">
-                    Your text message
-                </span>
-            </div>
-
-            <div class="form-item">
-                <button class="btn lg outline" type="submit">Send my message</button>
-            </div>
-
-        </form>
-
-        <div class="loader-spinner" id="message-loader">
-            <div></div>
-            <div></div>
-        </div>
-
-    </div>
-
-
-    <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="working-container">
-
-        <span class="badge xl absolute-badge">Sending...</span>
-
-
-        <div class="container fluid">
-
-
-            <div class="bg-dark p-4 mt-4">
-                <div id="stats">
-                    <p>Status: <span id="status">...</span></p>
-                    <p>Count: <span id="count">...</span></p>
+                    <span class="form-hint">
+                        Enter preffered channels divided by @, do not start or end with '@'
+                    </span>
+                    <span class="form-hint">
+                        You must be a member of the channels you'll be entering otherwise message won't be send into
+                        those...
+                    </span>
                 </div>
-            </div>
 
-            <div class="mt-4">
-                <button class="btn lg outline" type="button" id="stop-message">Stop</button>
+                <div class="form-item">
+                    <label>Message</label>
+                    <textarea rows="10" name="message" placeholder="Hello from TIMS">TIMS</textarea>
+
+                    <span class="form-hint">
+                        Your text message
+                    </span>
+                </div>
+
+                <div class="form-item">
+                    <button class="btn lg outline" type="submit">Send my message</button>
+                </div>
+
+            </form>
+
+            <div class="loader-spinner" id="message-loader">
+                <div></div>
+                <div></div>
             </div>
 
         </div>
 
 
+        <div class="container md border-dark rounded-lg shadow-lg my-5 py-5 px-3" id="working-container">
+
+            <span class="badge xl absolute-badge">Sending...</span>
+
+
+            <div class="container fluid">
+
+
+                <div class="bg-dark p-4 mt-4">
+                    <div id="stats">
+                        <p>Status: <span id="status">...</span></p>
+                        <p>Count: <span id="count">...</span></p>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button class="btn lg outline" type="button" id="stop-message">Stop</button>
+                </div>
+
+            </div>
+
+
+        </div>
     </div>
 
 
-
+    <!-- <script type="text/javascript" src="{{url_for('static', filename='js/sio.js')}}"></script> -->
     <script src="{{url_for('static', filename='js/app.js')}}"></script>
 </body>
 

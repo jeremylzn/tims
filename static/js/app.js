@@ -1,6 +1,18 @@
-const url = 'http://localhost'
+const url = 'http://localhost:5000'
+let interval = null
+// const socket = io()
+
+// socket.on('connect', function () {
+//     socket.emit('message', 'I\'m connected!');
+//     console.log('connected');
+// });
+
+
 
 window.onload = async function () {
+
+
+
     const registerForm = document.querySelector('#register-form')
     const confirmForm = document.querySelector('#confirm-form')
     const passForm = document.querySelector('#password-form')
@@ -154,9 +166,16 @@ window.onload = async function () {
         }))
         formUiController()
 
-
         const go = await requestAPI(url + '/message', 'post', data)
         console.log('go: ', go)
+
+        // loop
+        interval = setInterval(async function () {
+            const go = await requestAPI(url + '/message', 'post', data)
+            console.log('go: ', go)
+        }, +formData.interval * 60000)
+
+
     })
 
 
@@ -200,6 +219,8 @@ window.onload = async function () {
             }))
         }
         formUiController()
+
+        clearInterval(interval)
     })
 
 
@@ -213,26 +234,31 @@ window.onload = async function () {
     })
 
 
-    // WEBSOCKET
-    socket.on('tims-request-send-message', async function (data) {
-        stats.querySelector('#count').innerHTML = '...'
-        const ld = JSON.parse(localStorage.getItem('tims'))
-        if (ld.form.step != 'working') {
-            localStorage.setItem('tims', JSON.stringify({
-                ...ld,
-                form: {
-                    ...ld.form,
-                    step: 'working'
-                }
-            }))
-            formUiController()
-        }
-        console.log(data);
-        stats.querySelector('#count').innerHTML = data.count
-        stats.querySelector('#status').innerHTML = data.status
-    })
+
 
 }
+
+
+// WEBSOCKET
+// socket.on('tims-request-send-message', async function (data) {
+//     stats.querySelector('#count').innerHTML = '...'
+//     const ld = JSON.parse(localStorage.getItem('tims'))
+//     if (ld.form.step != 'working') {
+//         localStorage.setItem('tims', JSON.stringify({
+//             ...ld,
+//             form: {
+//                 ...ld.form,
+//                 step: 'working'
+//             }
+//         }))
+//         formUiController()
+//     }
+//     console.log(data);
+//     stats.querySelector('#count').innerHTML = data.count
+//     stats.querySelector('#status').innerHTML = data.status
+// })
+
+
 
 async function requestAPI(url, method, data = {}, success = function () { }) {
     try {
