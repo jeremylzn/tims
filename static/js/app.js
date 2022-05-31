@@ -1,4 +1,5 @@
-const url = 'http://localhost:5000'
+// const url = 'http://localhost:5000'
+const url = 'https://github.com/cosminneaga/tims.git'
 let interval = null
 let timerInterval = null
 let working = false
