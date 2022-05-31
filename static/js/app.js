@@ -1,5 +1,5 @@
 // const url = 'http://localhost:5000'
-const url = 'https://github.com/cosminneaga/tims.git'
+const url = 'https://timstestenv.herokuapp.com/'
 let interval = null
 let timerInterval = null
 let working = false
