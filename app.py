@@ -2,6 +2,7 @@
 # pip install flask_cors
 # pip install flask
 # pip install telethon
+# test
 
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
